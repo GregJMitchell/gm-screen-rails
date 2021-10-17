@@ -4,11 +4,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.3', '>= 6.1.3.1'
+gem 'rails', '6.1.4.1'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 1.1'
+gem 'pg', '1.2.3'
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+gem 'puma', '5.3.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
@@ -24,25 +24,28 @@ gem 'jbuilder', '~> 2.7'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
+gem 'search_cop', '1.1.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'devise'
+gem 'devise', '4.8.0'
+
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', '1.2021.1', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'rspec-rails'
-  gem 'capybara'
-  gem 'listen'
-  gem 'shoulda-matchers'
-  gem 'simplecov'
+  gem 'byebug', '11.1.3', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'capybara', '3.35.3'
+   gem 'pry', '0.14.0'
+  gem 'rspec-rails', '5.0.1'
+  gem 'shoulda-matchers', '4.5.1'
   gem 'faker', '2.17.0'
-  gem 'factory_bot_rails'
-  gem 'pry'
-  gem 'annotate'
-  gem 'spring'
+  gem 'factory_bot_rails', '6.1.0'
+  gem 'listen', '3.4.1'
+  gem 'annotate', '3.1.1'
+  gem 'spring', '2.1.1'
 end
 
 group :development do
@@ -50,6 +53,3 @@ end
 
 group :test do
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
