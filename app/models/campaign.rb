@@ -19,4 +19,8 @@
 #
 class Campaign < ApplicationRecord
   belongs_to :user
+
+  def last_updated
+    (DateTime.now.to_f - updated_at.to_f).to_i / 60
+  end
 end
