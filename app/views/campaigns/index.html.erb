@@ -1,14 +1,15 @@
-<div class="card-deck">
-  <% @campaigns.each do |camp| %>
-    <div id='campaign-<%= camp.id %>' class="card">
-      <img class="card-img-top" src="..." alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title"><%= camp.title %></h5>
-        <p class="card-text"><%= camp.description %></p>
+<section class='Campaigns m-2'>
+  <div class="card-group">
+    <% @campaigns.each do |camp| %>
+      <div id='campaign-<%= camp.id %>' class="card bg-dark border rounded border-secondary m-1">
+        <div class="card-body">
+          <h5 class="card-title"><%= camp.title %></h5>
+          <p class="card-text"><%= camp.description %></p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated <%= camp.last_updated >= 1 ? "#{camp.last_updated} mins ago" : 'now' %></small>
+        </div>
       </div>
-      <div class="card-footer">
-        <small class="text-muted">Last updated <%= camp.last_updated >= 1 ? "#{camp.last_updated} mins ago" : 'now' %></small>
-      </div>
-    </div>
-  <% end %>
-</div>
+    <% end %>
+  </div>
+</section>
