@@ -4,3 +4,10 @@
 require_relative 'config/application'
 
 Rails.application.load_tasks
+
+task :lint do
+  # puts "TODO enable rubocop linting with custom config"
+  require 'rubocop'
+  cli = RuboCop::CLI.new
+  cli.run(%w(--auto-correct))
+end
