@@ -31,6 +31,10 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'devise', '4.8.0'
 
+gem 'rubocop', '1.12.1'
+gem 'rubocop-performance', '1.11.1'
+gem 'rubocop-rails', '2.9.1'
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', '1.2021.1', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
@@ -38,7 +42,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', '11.1.3', platforms: [:mri, :mingw, :x64_mingw]
   gem 'capybara', '3.35.3'
-   gem 'pry', '0.14.0'
+  gem 'pry', '0.14.0'
   gem 'rspec-rails', '5.0.1'
   gem 'shoulda-matchers', '4.5.1'
   gem 'faker', '2.17.0'
