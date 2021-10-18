@@ -1,0 +1,11 @@
+.Campaigns {
+  .card-group {
+    justify-content: space-evenly;
+  }
+  .card {
+    max-width: 33%;
+    .card-text {
+      word-wrap: break-word;
+    }
+  }
+}
