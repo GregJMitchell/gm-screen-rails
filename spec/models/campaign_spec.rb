@@ -24,6 +24,12 @@ RSpec.describe Campaign, type: :model do
     it { should belong_to :user }
   end
 
+  describe "validations" do
+    it { should validate_presence_of :title }
+    it { should validate_presence_of :description }
+  end
+  
+
   describe 'model methods' do
     describe 'instance methods' do
       describe '.last_updated' do
