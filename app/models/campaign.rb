@@ -19,6 +19,9 @@
 #
 class Campaign < ApplicationRecord
   belongs_to :user
+  
+  validates :title, presence: true
+  validates :description, presence: true
 
   def last_updated
     (DateTime.now.to_f - updated_at.to_f).to_i / 60
