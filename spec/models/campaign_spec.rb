@@ -20,5 +20,24 @@
 require 'rails_helper'
 
 RSpec.describe Campaign, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'relationships' do
+    it { should belong_to :user }
+  end
+
+  describe 'validations' do
+    it { should validate_presence_of :title }
+    it { should validate_presence_of :description }
+  end
+
+
+  describe 'model methods' do
+    describe 'instance methods' do
+      describe '.last_updated' do
+        it 'should return the number of minutes since last update to record' do
+          camp = create(:campaign, updated_at: 5.minutes.ago)
+          expect(camp.last_updated).to eq(5)
+        end
+      end
+    end
+  end
 end
