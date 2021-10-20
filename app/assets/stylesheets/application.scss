@@ -18,3 +18,17 @@
   font-family: 'Ubuntu', sans-serif !important;
  }
 
+ .flash {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+
+   .alert {
+     max-width: 100%;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     margin-bottom: 0px !important;
+   }
+ }
+
