@@ -13,7 +13,7 @@ describe 'Campaigns edit spec' do
       expect((find_field :campaign_description).value).to eq(@campaign.description)
 
       fill_in :campaign_title, with: 'Title'
-      fill_in :campaign_description, with: "Description"
+      fill_in :campaign_description, with: 'Description'
 
       click_on 'Update Campaign'
 

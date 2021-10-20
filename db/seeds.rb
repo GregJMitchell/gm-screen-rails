@@ -10,14 +10,14 @@ Campaign.destroy_all
 
 user = User.create(email: 'test@test.com', password: 'password')
 
-Campaign.create!(title: 'C1', 
+Campaign.create!(title: 'C1',
                  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non tellus orci ac auctor augue mauris augue.',
                  user: user)
 
-Campaign.create!(title: 'C2', 
+Campaign.create!(title: 'C2',
                  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non tellus orci ac auctor augue mauris augue.',
                  user: user)
 
-Campaign.create!(title: 'C3', 
+Campaign.create!(title: 'C3',
                  description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non tellus orci ac auctor augue mauris augue.',
                  user: user)

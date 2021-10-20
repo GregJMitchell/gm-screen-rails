@@ -9,7 +9,7 @@ describe 'Campaigns new spec' do
       visit new_campaign_path
 
       fill_in :campaign_title, with: 'Title'
-      fill_in :campaign_description, with: "Description"
+      fill_in :campaign_description, with: 'Description'
       expect {
         click_on 'Create Campaign'
       }.to change(Campaign, :count).by(1)
