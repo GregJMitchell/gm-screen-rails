@@ -1,0 +1,18 @@
+<div class='flash m-1'>
+  <% flash.each do |name, msg| %>
+    <div class="alert alert-<%= ['success', 'notice'].include?(name) ? "success" : "danger" %>" role="alert">
+        <button id='flash-dismiss' type="button" class="close btn" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <%= msg %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  $(function() {
+    setTimeout(() => {
+      $('.flash').slideUp()
+    }, 5000);
+  })
+</script>
