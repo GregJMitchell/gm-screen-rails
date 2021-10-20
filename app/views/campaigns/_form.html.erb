@@ -1,0 +1,18 @@
+<%= form_with model: @campaign, local: true, class: 'CampaignForm' do |form| %>
+<h1>Create a New Campaign</h1>
+  <div class='form-container m-2'>
+    <div class="form-group m-2 text-center">
+      <label for="#title">Campaign Title</label>
+      <%= form.text_field :title, placeholder: "Campaign Title", class: "form-control" %>
+    </div>
+
+    <div class="form-group m-2 text-center">
+      <label for="#description">Campaign Description</label>
+      <%= form.text_area :description, placeholder: "Campaign Description", class: "text-area form-control", rows: 10 %>
+    </div>
+
+    <div class="form-group m-1 text-center">
+      <%= form.submit  class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
