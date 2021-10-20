@@ -1,11 +1,41 @@
 .Campaigns {
-  .card-group {
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .campaign-card-row {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
   }
   .card {
-    max-width: 33%;
+    width: 32.8%;
     .card-text {
       word-wrap: break-word;
     }
+
+    .campaign-card-footer {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .campaign-card-nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+  }
+}
+
+.CampaignForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .form-container {
+    width: 30%;
   }
 }
