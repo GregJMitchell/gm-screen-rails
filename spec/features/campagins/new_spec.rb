@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 describe 'Campaigns new spec' do
   describe "As a user, when I visit '/campaigns/new'" do
     before :each do
