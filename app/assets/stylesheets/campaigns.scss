@@ -39,3 +39,23 @@
     width: 30%;
   }
 }
+
+.Campaign {
+  display: flex;
+  flex-direction: column;
+  .body {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    .card {
+      width: 24.46%;
+
+      .button_to {
+        display: flex;
+        justify-content: flex-end;
+        margin: 0.25rem !important;
+      }
+    }
+  }
+}

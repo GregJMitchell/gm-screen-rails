@@ -1,0 +1,15 @@
+.PlayerCharacterForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .form-container {
+    width: 30%;
+
+    .stat-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+}
