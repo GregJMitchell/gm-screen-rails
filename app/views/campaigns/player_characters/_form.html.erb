@@ -1,0 +1,61 @@
+<%= form_with model: @player_character, url: params[:id] ? campaign_player_character_path(@campaign, @player_character) : campaign_player_characters_path(@campaign), local: true, class: 'PlayerCharacterForm' do |form| %>
+  <h1>Create a New Player Character</h1>
+
+  <div class='form-container m-2'>
+    <div class="form-group m-2 text-center">
+      <label for="#name">Player Character Name <sup class='text-danger'>* required</sup></label>
+      <%= form.text_field :name, placeholder: "Player Character Name", class: "form-control" %>
+    </div>
+
+    <div class="form-group m-2 text-center">
+      <label for="#race">Player Character Race <sup class='text-danger'>* required</sup></label>
+      <%= form.text_field :race, placeholder: "Player Character Race", class: "form-control" %>
+    </div>
+
+    <div class="form-group m-2 text-center">
+      <label for="#character_sheet_url">Character Sheet Url</label>
+      <%= form.text_field :character_sheet_url, placeholder: "Character Sheet Url", class: "form-control" %>
+    </div>
+
+    <div class="form-group m-2 text-center">
+      <label for="#level">Player Character Level <sup class='text-danger'>* required</sup></label>
+      <%= form.select :level, options_for_select(1..20, 1), {include_blank: 'Level', selected: @player_character.level || 1}, {class: 'form-control',} %>
+    </div>
+
+    <div class="form-group m-2 text-center">
+      <label>Player Character Stats</label>
+      <div class='stat-container'>
+        <div class='stat m-2'>
+          <label for="#strength">Strength <sup class='text-danger'>* required</sup></label>
+          <%= form.select :strength, options_for_select(1..30, @player_character.strength), {include_blank: 'Strength'}, {class: 'form-control stat-select',} %>
+        </div>
+        <div class='stat m-2'>
+          <label for="#dexterity">Dexterity <sup class='text-danger'>* required</sup></label>
+          <%= form.select :dexterity, options_for_select(1..30, @player_character.dexterity), {include_blank: 'Dexterity'}, {class: 'form-control stat-select',} %>
+        </div>
+        <div class='stat m-2'>
+          <label for="#constitution">Constitution <sup class='text-danger'>* required</sup></label>
+          <%= form.select :constitution, options_for_select(1..30, @player_character.constitution), {include_blank: 'Constitution'}, {class: 'form-control stat-select',} %>
+        </div>
+      </div>
+      <div class='stat-container'>
+        <div class='stat m-2'>
+          <label for="#intelligence">Intelligence <sup class='text-danger'>* required</sup></label>
+          <%= form.select :intelligence, options_for_select(1..30, @player_character.intelligence), {include_blank: 'Intelligence'}, {class: 'form-control stat-select',} %>
+        </div>
+        <div class='stat m-2'>
+          <label for="#wisdom">Wisdom <sup class='text-danger'>* required</sup></label>
+          <%= form.select :wisdom, options_for_select(1..30, @player_character.wisdom), {include_blank: 'Wisdom'}, {class: 'form-control stat-select',} %>
+        </div>
+        <div class='stat m-2'>
+          <label for="#charisma">Charisma <sup class='text-danger'>* required</sup></label>
+          <%= form.select :charisma, options_for_select(1..30, @player_character.charisma), {include_blank: 'Charisma'}, {class: 'form-control stat-select',} %>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group m-1 text-center">
+      <%= form.submit  class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end %>
