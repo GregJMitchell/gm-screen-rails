@@ -7,7 +7,7 @@ describe 'Campaigns PC new spec' do
       @campaign = create(:campaign, user: @user)
       sign_in @user
     end
-    it "should have a form to create a new PC" do
+    it 'should have a form to create a new PC' do
       visit new_campaign_player_character_path(@campaign)
 
       fill_in :player_character_name, with: 'PC NAME'
@@ -37,6 +37,5 @@ describe 'Campaigns PC new spec' do
       expect(new_char.wisdom).to eq(7)
       expect(new_char.charisma).to eq(8)
     end
-    
   end
 end

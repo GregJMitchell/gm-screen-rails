@@ -31,14 +31,14 @@
 #
 FactoryBot.define do
   factory :non_player_character do
-    name { "MyString" }
-    backstory { "MyText" }
+    name { 'MyString' }
+    backstory { 'MyText' }
     campaign
     alignment
-    race { "MyString" }
+    race { 'MyString' }
     challenge_rating { 1 }
-    size_category 
+    size_category
     monster_type
-    stat_block_url { "MyString" }
+    stat_block_url { 'MyString' }
   end
 end

@@ -38,25 +38,24 @@ class Campaigns::NonPlayerCharactersController < Campaigns::BaseController
   end
 
   private
+    def set_campaign
+      @campaign = Campaign.find(params[:campaign_id])
+    end
 
-  def set_campaign
-    @campaign = Campaign.find(params[:campaign_id])
-  end
+    def set_non_player_character
+      @non_player_character = params[:id] ? NonPlayerCharacter.find(params[:id]) : NonPlayerCharacter.new(campaign: @campaign)
+    end
 
-  def set_non_player_character
-    @non_player_character = params[:id] ? NonPlayerCharacter.find(params[:id]) : NonPlayerCharacter.new(campaign: @campaign)
-  end
-
-  def non_player_character_params
-    params.require(:non_player_character).permit(
-      :name,
-      :race,
-      :stat_block_url,
-      :alignment_id,
-      :backstory,
-      :challenge_rating,
-      :size_category_id,
-      :monster_type_id
-    )
-  end
+    def non_player_character_params
+      params.require(:non_player_character).permit(
+        :name,
+        :race,
+        :stat_block_url,
+        :alignment_id,
+        :backstory,
+        :challenge_rating,
+        :size_category_id,
+        :monster_type_id
+      )
+    end
 end

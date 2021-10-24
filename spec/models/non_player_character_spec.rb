@@ -32,15 +32,14 @@
 require 'rails_helper'
 
 RSpec.describe NonPlayerCharacter, type: :model do
-  describe "validations" do
+  describe 'validations' do
     it { should validate_presence_of(:name) }
   end
 
-  describe "relationships" do
-    it { should belong_to(:campaign) } 
-    it { should belong_to(:size_category) } 
-    it { should belong_to(:alignment) } 
-    it { should belong_to(:monster_type) } 
+  describe 'relationships' do
+    it { should belong_to(:campaign) }
+    it { should belong_to(:size_category) }
+    it { should belong_to(:alignment) }
+    it { should belong_to(:monster_type) }
   end
-  
 end

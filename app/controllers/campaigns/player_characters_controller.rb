@@ -6,7 +6,7 @@ class Campaigns::PlayerCharactersController < Campaigns::BaseController
 
   def edit; end
 
-  def create 
+  def create
     @player_character.assign_attributes(player_character_params)
     if @player_character.save
       flash[:success] = "#{@player_character.name} was created and added to your campaign"
@@ -38,27 +38,26 @@ class Campaigns::PlayerCharactersController < Campaigns::BaseController
   end
 
   private
+    def set_campaign
+      @campaign = Campaign.find(params[:campaign_id])
+    end
 
-  def set_campaign
-    @campaign = Campaign.find(params[:campaign_id])
-  end
+    def set_player_character
+      @player_character = params[:id] ? PlayerCharacter.find(params[:id]) : PlayerCharacter.new(campaign: @campaign)
+    end
 
-  def set_player_character
-    @player_character = params[:id] ? PlayerCharacter.find(params[:id]) : PlayerCharacter.new(campaign: @campaign)
-  end
-
-  def player_character_params
-    params.require(:player_character).permit(
-      :name,
-      :race,
-      :character_sheet_url,
-      :level,
-      :strength,
-      :dexterity,
-      :constitution,
-      :intelligence,
-      :wisdom,
-      :charisma,
-    )
-  end
+    def player_character_params
+      params.require(:player_character).permit(
+        :name,
+        :race,
+        :character_sheet_url,
+        :level,
+        :strength,
+        :dexterity,
+        :constitution,
+        :intelligence,
+        :wisdom,
+        :charisma,
+      )
+    end
 end
