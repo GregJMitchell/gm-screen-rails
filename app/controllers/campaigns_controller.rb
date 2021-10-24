@@ -26,7 +26,7 @@ class CampaignsController < ApplicationController
   def update
     @campaign.assign_attributes(campaign_params)
     if @campaign.save
-      flash[:notice] = "Campaign #{params[:action]}ed"
+      flash[:notice] = "Campaign #{params[:action]}d"
       redirect_to campaign_path(@campaign)
     else
       flash[:error] = @campaign.errors.full_messages.to_sentence
