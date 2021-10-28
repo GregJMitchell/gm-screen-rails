@@ -38,10 +38,9 @@ RSpec.describe City, type: :model do
     end
   end
 
-  describe "validations" do
+  describe 'validations' do
     it { should validate_presence_of :name }
     it { should validate_presence_of :gov_type }
     it { should validate_numericality_of :population }
   end
-  
 end

@@ -8,7 +8,7 @@ describe 'Campaigns City new spec' do
       @leader = create(:non_player_character, campaign: @campaign)
       sign_in @user
     end
-    it "should have a form to create a new city" do
+    it 'should have a form to create a new city' do
       visit new_campaign_city_path(@campaign)
 
       fill_in :city_name, with: 'City Name'
@@ -29,6 +29,5 @@ describe 'Campaigns City new spec' do
       expect(new_city.population).to eq(123)
       expect(new_city.gov_type).to eq('gov_type')
     end
-    
   end
 end
