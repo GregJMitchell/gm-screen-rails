@@ -38,10 +38,6 @@ class Campaigns::PlayerCharactersController < Campaigns::BaseController
   end
 
   private
-    def set_campaign
-      @campaign = Campaign.find(params[:campaign_id])
-    end
-
     def set_player_character
       @player_character = params[:id] ? PlayerCharacter.find(params[:id]) : PlayerCharacter.new(campaign: @campaign)
     end
