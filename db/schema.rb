@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_24_161158) do
+ActiveRecord::Schema.define(version: 2021_10_28_021726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,19 @@ ActiveRecord::Schema.define(version: 2021_10_24_161158) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_campaigns_on_user_id"
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.string "gov_type"
+    t.integer "population"
+    t.text "description"
+    t.bigint "campaign_id", null: false
+    t.bigint "leader_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["campaign_id"], name: "index_cities_on_campaign_id"
+    t.index ["leader_id"], name: "index_cities_on_leader_id"
   end
 
   create_table "monster_types", force: :cascade do |t|
@@ -91,6 +104,8 @@ ActiveRecord::Schema.define(version: 2021_10_24_161158) do
   end
 
   add_foreign_key "campaigns", "users"
+  add_foreign_key "cities", "campaigns"
+  add_foreign_key "cities", "non_player_characters", column: "leader_id"
   add_foreign_key "non_player_characters", "alignments"
   add_foreign_key "non_player_characters", "campaigns"
   add_foreign_key "non_player_characters", "monster_types"
