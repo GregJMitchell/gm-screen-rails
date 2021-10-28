@@ -25,4 +25,7 @@
 class City < ApplicationRecord
   belongs_to :campaign
   belongs_to :leader, required: false, class_name: 'NonPlayerCharacter'
+
+  validates :name, :gov_type, presence: :true
+  validates :population, numericality: {greater_than_or_equal_to: 0}
 end
