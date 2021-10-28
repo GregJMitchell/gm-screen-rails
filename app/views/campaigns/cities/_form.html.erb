@@ -13,7 +13,7 @@
     </div>
 
     <div class="form-group m-2 text-center">
-      <label for="#leader_id">City Leader</label>
+      <label for="#city_leader_id">City Leader</label>
       <%= form.collection_select :leader_id, @campaign.non_player_characters, :id, :name, {include_blank: 'Select Leader'}, {multiple: false, class: 'form-control'} %>
     </div>
 
