@@ -27,14 +27,21 @@ require 'rails_helper'
 RSpec.describe City, type: :model do
   describe 'relationships' do
     it { should belong_to(:campaign) }
-    
+
     it 'should not have a leader (opt)' do
-      expect { create :city }.not_to raise_error ActiveRecord::RecordInvalid
+      expect { create :city }.to change(City, :count).by(1)
     end
 
     it 'should have a leader (opt)' do
       npc = create :non_player_character
-      expect { create(:city, leader: npc) }.not_to raise_error ActiveRecord::RecordInvalid
+      expect { create(:city, leader: npc) }.to change(City, :count).by(1)
     end
   end
+
+  describe "validations" do
+    it { should validate_presence_of :name }
+    it { should validate_presence_of :gov_type }
+    it { should validate_numericality_of :population }
+  end
+  
 end
