@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :campaigns do
     resources :player_characters, except: %i[index], controller: 'campaigns/player_characters'
     resources :non_player_characters, except: %i[index], controller: 'campaigns/non_player_characters'
+    resources :cities, except: %i[index], controller: 'campaigns/cities'
   end
 end
