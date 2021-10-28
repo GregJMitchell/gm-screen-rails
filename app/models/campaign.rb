@@ -18,7 +18,12 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Campaign < ApplicationRecord
+  default_scope { order(updated_at: :desc) }
+
   belongs_to :user
+
+  has_many :player_characters
+  has_many :non_player_characters
 
   validates :title, presence: true
   validates :description, presence: true
