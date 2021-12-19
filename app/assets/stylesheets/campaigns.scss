@@ -10,7 +10,7 @@
     flex-direction: row;
   }
   .card {
-    width: 32.8%;
+    width: 32.6%;
     .card-text {
       word-wrap: break-word;
     }
@@ -45,11 +45,26 @@
   flex-direction: column;
   .body {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     flex-wrap: wrap;
     flex-direction: row;
     .card {
-      width: 24.46%;
+      width: 47%;
+      
+      .card-header {
+        text-align: center;
+      }
+
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        .card-link {
+          border: white;
+          border-width: 1px;
+          padding: 5px;
+        }
+      }
+
 
       .button_to {
         display: flex;

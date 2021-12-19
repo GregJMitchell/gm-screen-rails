@@ -1,0 +1,61 @@
+<div class='card bg-dark border rounded border-secondary m-1'>
+  <%= button_to '+ Add New', new_campaign_player_character_path(@campaign), method: :get, class: 'btn btn-link btn-sm new-button' %>
+<div class='card-header'>
+  <h3>Player Characters</h3>
+</div>
+<div class='d-flex justify-content-between align-items-center'>
+<% @campaign.player_characters.each do |char| %>
+  <%= link_to char.name, campaign_player_character_path(@campaign, char), class: 'link m-1' %>
+  <div class='d-flex align-items-center'>
+    <%= link_to 'Edit', edit_campaign_player_character_path(@campaign, char), class: 'btn btn-outline-secondary btn-sm' %>
+    <%= button_to 'Delete', campaign_player_character_path(@campaign, char), method: :delete, class: 'm-1 btn btn-outline-danger btn-sm', data: {confirm: 'Are you sure?'} %>
+  </div>
+<% end %>
+</div>
+</div>
+<div class='card bg-dark border rounded border-secondary m-1'>
+<%= button_to '+ Add New', new_campaign_non_player_character_path(@campaign), method: :get, class: 'btn btn-link btn-sm new-button' %>
+<div class='card-header'>
+  <h3>Non-Player Characters</h3>
+</div>
+<div class='d-flex justify-content-between align-items-center'>
+<% @campaign.non_player_characters.each do |npc| %>
+  <%= link_to npc.name, campaign_non_player_character_path(@campaign, npc), class: 'link m-1' %>
+  <div class='d-flex align-items-center'>
+    <%= link_to 'Edit', edit_campaign_non_player_character_path(@campaign, npc), class: 'btn btn-outline-secondary btn-sm' %>
+    <%= button_to 'Delete', campaign_non_player_character_path(@campaign, npc), method: :delete, class: 'm-1 btn btn-outline-danger btn-sm', data: {confirm: 'Are you sure?'} %>
+  </div>
+<% end %>
+</div>
+</div>
+<div class='card bg-dark border rounded border-secondary m-1'>
+<div class='card-header'>
+  <h3>Factions</h3>
+</div>
+</div>
+<div class='card bg-dark border rounded border-secondary m-1'>
+<%= button_to '+ Add New', new_campaign_city_path(@campaign), method: :get, class: 'btn btn-link btn-sm new-button' %>
+<div class='card-header'>
+  <h3>Cities</h3>
+</div>
+<div class='d-flex justify-content-between align-items-center'>
+  <% @campaign.cities.each do |city| %>
+    <%= link_to city.name, campaign_city_path(@campaign, city), class: 'link m-1' %>
+    <div class='d-flex align-items-center'>
+      <%= link_to 'Edit', edit_campaign_city_path(@campaign, city), class: 'btn btn-outline-secondary btn-sm' %>
+      <%= button_to 'Delete', campaign_city_path(@campaign, city), method: :delete, class: 'm-1 btn btn-outline-danger btn-sm', data: {confirm: 'Are you sure?'} %>
+    </div>
+  <% end %>
+</div>
+</div>
+<div class='card bg-dark border rounded border-secondary m-1'>
+<div class='card-header'>
+  <h3>Storylines</h3>
+</div>
+</div>
+<div class='card bg-dark border rounded border-secondary m-1'>
+<div class='card-header'>
+  <h3>Quests</h3>
+</div>
+</div>
+</div>
