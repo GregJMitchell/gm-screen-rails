@@ -1,7 +1,7 @@
 class Campaigns::PlayerCharactersController < Campaigns::BaseController
   before_action :set_campaign
   before_action :set_player_character, except: %i[index]
-  
+
   def index; end
 
   def new; end
