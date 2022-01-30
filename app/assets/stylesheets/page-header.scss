@@ -1,0 +1,18 @@
+.page-header-space {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page-header-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 0.5rem !important;
+}
