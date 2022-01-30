@@ -15,13 +15,13 @@ describe 'Campaigns index spec' do
       within("#campaign-#{camp.id}") do
         expect(page).to have_content(camp.title)
         expect(page).to have_content(camp.description)
-        expect(page).to have_content('Last updated 5 mins ago')
+        expect(page).to have_content('Last updated 5 minutes ago')
       end
 
       within("#campaign-#{camp2.id}") do
         expect(page).to have_content(camp2.title)
         expect(page).to have_content(camp2.description)
-        expect(page).to have_content('Last updated now')
+        expect(page).to have_content('Last updated less than a minute ago')
       end
     end
   end
