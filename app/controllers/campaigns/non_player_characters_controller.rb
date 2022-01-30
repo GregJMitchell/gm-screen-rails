@@ -38,10 +38,6 @@ class Campaigns::NonPlayerCharactersController < Campaigns::BaseController
   end
 
   private
-    def set_campaign
-      @campaign = Campaign.find(params[:campaign_id])
-    end
-
     def set_non_player_character
       @non_player_character = params[:id] ? NonPlayerCharacter.find(params[:id]) : NonPlayerCharacter.new(campaign: @campaign)
     end

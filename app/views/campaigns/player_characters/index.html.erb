@@ -1,0 +1,8 @@
+<div class='page-wrapper'>
+  <div class='page-header-end'>
+    <%= link_to '+ New', new_campaign_player_character_path(@campaign), class: 'btn btn-primary' %>
+  </div>
+  <div class='single-card'>
+      <%= render partial: 'shared/table', locals: {headers: @campaign.player_characters.klass.columns_hash.keys, rows: @campaign.player_characters, model: PlayerCharacter} %>
+  </div>
+</div>

@@ -24,6 +24,7 @@ class Campaign < ApplicationRecord
 
   has_many :player_characters
   has_many :non_player_characters
+  has_many :cities
 
   validates :title, presence: true
   validates :description, presence: true

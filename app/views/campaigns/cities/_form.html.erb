@@ -1,0 +1,34 @@
+<%= form_with model: @city, url: params[:id] ? campaign_city_path(@campaign, @city) : campaign_cities_path(@campaign), local: true, class: 'CityForm Form' do |form| %>
+  <h1>Create a New City</h1>
+
+  <div class='form-container m-2'>
+    <div class="form-group m-2 text-center">
+      <label for="#name">Non-Player Character Name <sup class='text-danger'>* required</sup></label>
+      <%= form.text_field :name, placeholder: "City Name", class: "form-control" %>
+    </div>
+
+    <div class="form-group m-2 text-center">
+      <label for="#description">City Description</label>
+      <%= form.text_area :description, placeholder: "City Description", class: "text-area form-control", rows: 10 %>
+    </div>
+
+    <div class="form-group m-2 text-center">
+      <label for="#city_leader_id">City Leader</label>
+      <%= form.collection_select :leader_id, @campaign.non_player_characters, :id, :name, {include_blank: 'Select Leader'}, {multiple: false, class: 'form-control'} %>
+    </div>
+
+    <div class="form-group m-2 text-center">
+      <label for="#population">City Population</label>
+      <%= form.number_field :population, placeholder: "City Population", class: "text-area form-control", min: 0 %>
+    </div>
+
+    <div class="form-group m-2 text-center">
+      <label for="#gov_type">Government Type<sup class='text-danger'>* required</sup></label>
+      <%= form.text_field :gov_type, placeholder: "Government Type", class: "form-control" %>
+    </div>
+
+   <div class="form-group m-1 text-center">
+      <%= form.submit  class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end%>

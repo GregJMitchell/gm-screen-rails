@@ -1,0 +1,24 @@
+<% if !rows.blank? %>
+  <table class='table table-bordered table-striped shared-table'>
+    <thead>
+      <% headers.each do |key|%>
+        <th><%= key %></th>
+      <% end %>
+    </thead>
+      <tbody>
+        <% rows.each do |row| %>
+            <tr>
+          <% row.attributes.each do |_k,v| %>   
+            <td>
+              <p><%= v %></p>
+            </td>
+          <% end %>
+            </tr>
+        <% end %>
+    </tbody>
+  </table>
+<% else %>
+<div>
+  <p>There are no <%= model.name.titlecase.pluralize %> attached to this campaign</p>
+</div>
+<% end %>
