@@ -5,22 +5,26 @@
       <%= link_to '+ Add new', new_campaign_path, class: 'btn btn-primary' %>
     </div>
   </div>
-  <div class="campaign-card-row">
-    <% @campaigns.each do |camp| %>
-      <div id='campaign-<%= camp.id %>' class="card bg-light border rounded border-secondary">
-        <div class="card-body">
-          <%= link_to camp.title, campaign_path(camp), class: 'btn btn-link p-0' %>
-          <p class="card-text"><%= camp.description %></p>
-        </div>
-        <div class="card-footer campaign-card-footer">
-          <small class="text-muted">Last updated <%= distance_of_time_in_words(camp.updated_at, DateTime.now) %> ago</small>
-          <div class='campaign-card-nav'>
-            <%= link_to 'View', campaign_path(camp), class: 'm-1 btn btn-primary btn-sm' %>
-            <%= link_to 'Edit', edit_campaign_path(camp), class: 'm-1 btn btn-secondary btn-sm' %>
-            <%= button_to 'Delete', campaign_path(camp), method: :delete, class: 'm-1 btn btn-danger btn-sm', data: {confirm: 'Are you sure?'} %>
+  <% if !@campaigns.blank?%>
+    <div class="campaign-card-row">
+      <% @campaigns.each do |camp| %>
+        <div id='campaign-<%= camp.id %>' class="card bg-light border rounded border-secondary">
+          <div class="card-body">
+            <%= link_to camp.title, campaign_path(camp), class: 'btn btn-link p-0' %>
+            <p class="card-text"><%= camp.description %></p>
+          </div>
+          <div class="card-footer campaign-card-footer">
+            <small class="text-muted">Last updated <%= distance_of_time_in_words(camp.updated_at, DateTime.now) %> ago</small>
+            <div class='campaign-card-nav'>
+              <%= link_to 'View', campaign_path(camp), class: 'm-1 btn btn-primary btn-sm' %>
+              <%= link_to 'Edit', edit_campaign_path(camp), class: 'm-1 btn btn-secondary btn-sm' %>
+              <%= button_to 'Delete', campaign_path(camp), method: :delete, class: 'm-1 btn btn-danger btn-sm', data: {confirm: 'Are you sure?'} %>
+            </div>
           </div>
         </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class='text-center'>You have no campaigns attached to your account</p>
+  <% end %>
 </section>
