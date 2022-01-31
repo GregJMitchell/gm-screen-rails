@@ -1,0 +1,19 @@
+<%= form_with model: @storyline, url: params[:id] ? campaign_storyline_path(@campaign, @storyline) : campaign_storylines_path(@campaign), local: true, class: 'StorylineForm Form' do |form| %>
+  <h1>Create a New Storyline</h1>
+
+  <div class='form-container m-2'>
+    <div class="form-group m-2 text-center">
+      <label for="#name">Storyline Name <sup class='text-danger'>* required</sup></label>
+      <%= form.text_field :name, placeholder: "Storyline Name", class: "form-control" %>
+    </div>
+
+    <div class="form-group m-2 text-center">
+      <label for="#description">Storyline Description</label>
+      <%= form.text_area :description, placeholder: "Storyline Description", class: "text-area form-control", rows: 10 %>
+    </div>
+
+   <div class="form-group m-1 text-center">
+      <%= form.submit  class: 'btn btn-primary' %>
+    </div>
+  </div>
+<% end%>
