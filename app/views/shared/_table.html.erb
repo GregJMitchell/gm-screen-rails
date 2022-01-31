@@ -1,6 +1,7 @@
 <% if !rows.blank? %>
   <table class='table table-bordered table-striped shared-table'>
     <thead>
+    <% headers << 'actions'%>
       <% headers.each do |key|%>
         <th><%= key %></th>
       <% end %>
@@ -8,11 +9,22 @@
       <tbody>
         <% rows.each do |row| %>
             <tr>
-          <% row.attributes.each do |_k,v| %>   
+          <% row.attributes.each do |k,v| %>   
             <td>
+            <% if k == 'id'%>
+              <a href="/campaigns/<%= "#{@campaign.id}/#{model.name.underscore.pluralize}/#{v}" %>">
+                <%= v %>
+              </a>
+            <% else %>
               <p><%= v %></p>
+            <% end %>
             </td>
           <% end %>
+            <td>
+            <%= link_to 'View', "/campaigns/#{@campaign.id}/#{model.name.underscore.pluralize}/#{row.id}", class: 'm-1 btn btn-primary btn-sm' %>
+            <%= link_to 'Edit', "/campaigns/#{@campaign.id}/#{model.name.underscore.pluralize}/#{row.id}/edit", class: 'm-1 btn btn-secondary btn-sm' %>
+            <%= button_to 'Delete', "/campaigns/#{@campaign.id}/#{model.name.underscore.pluralize}/#{row.id}/", method: :delete, class: 'm-1 btn btn-danger btn-sm',  data: {confirm: 'Are you sure?'} %>
+            </td>
             </tr>
         <% end %>
     </tbody>
