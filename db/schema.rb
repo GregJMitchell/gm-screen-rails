@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_28_021726) do
+ActiveRecord::Schema.define(version: 2022_01_30_231313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,11 +84,39 @@ ActiveRecord::Schema.define(version: 2021_10_28_021726) do
     t.index ["campaign_id"], name: "index_player_characters_on_campaign_id"
   end
 
+  create_table "quests", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.text "rewards"
+    t.bigint "campaign_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["campaign_id"], name: "index_quests_on_campaign_id"
+  end
+
   create_table "size_categories", force: :cascade do |t|
     t.string "name"
     t.string "grid_area"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "storyline_quests", force: :cascade do |t|
+    t.bigint "storyline_id", null: false
+    t.bigint "quest_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["quest_id"], name: "index_storyline_quests_on_quest_id"
+    t.index ["storyline_id"], name: "index_storyline_quests_on_storyline_id"
+  end
+
+  create_table "storylines", force: :cascade do |t|
+    t.string "name"
+    t.bigint "campaign_id", null: false
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["campaign_id"], name: "index_storylines_on_campaign_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -111,4 +139,8 @@ ActiveRecord::Schema.define(version: 2021_10_28_021726) do
   add_foreign_key "non_player_characters", "monster_types"
   add_foreign_key "non_player_characters", "size_categories"
   add_foreign_key "player_characters", "campaigns"
+  add_foreign_key "quests", "campaigns"
+  add_foreign_key "storyline_quests", "quests"
+  add_foreign_key "storyline_quests", "storylines"
+  add_foreign_key "storylines", "campaigns"
 end
