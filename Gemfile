@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.2'
+ruby '3.0.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '6.1.4.1'
+gem 'rails', '7.0.2.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '1.2.3'
 # Use Puma as the app server
@@ -29,7 +29,7 @@ gem 'search_cop', '1.1.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'devise', '4.8.0'
+gem 'devise', '4.8.1'
 
 gem 'rubocop', '1.12.1'
 gem 'rubocop-performance', '1.11.1'
@@ -48,7 +48,7 @@ group :development, :test do
   gem 'faker', '2.17.0'
   gem 'factory_bot_rails', '6.1.0'
   gem 'listen', '3.4.1'
-  gem 'annotate', '3.1.1'
+  gem 'annotate', '3.2'
   gem 'spring', '2.1.1'
 end
 
