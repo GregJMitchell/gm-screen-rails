@@ -47,7 +47,7 @@ class PlayerCharacter < ApplicationRecord
             :race,
             :level, presence: :true
 
-  validate :valid_icon
+  validate :valid_icon_mime, :valid_icon_size
 
   def character_stats
     attributes.slice('strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma')
