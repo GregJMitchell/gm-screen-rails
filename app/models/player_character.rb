@@ -50,20 +50,19 @@ class PlayerCharacter < ApplicationRecord
   validate :valid_icon
 
   def character_stats
-    attributes.slice("strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma")
+    attributes.slice('strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma')
   end
 
   private
-
-  def valid_icon_mime
-    if icon.attached? && !icon.content_type.in?(FILE_VALIDATIONS[:content_types])
-      errors.add(:icon, "Must be one of #{FILE_VALIDATIONS[:content_types].join(', ')}")
+    def valid_icon_mime
+      if icon.attached? && !icon.content_type.in?(FILE_VALIDATIONS[:content_types])
+        errors.add(:icon, "Must be one of #{FILE_VALIDATIONS[:content_types].join(', ')}")
+      end
     end
-  end
 
-  def valid_icon_size
-    if icon.attached? && FILE_VALIDATIONS[:max_size] > self.icon.attachment.blob.byte_size
-      errors.add(:icon, "Must be smaller than 5MB")
+    def valid_icon_size
+      if icon.attached? && FILE_VALIDATIONS[:max_size] > self.icon.attachment.blob.byte_size
+        errors.add(:icon, 'Must be smaller than 5MB')
+      end
     end
-  end
 end
