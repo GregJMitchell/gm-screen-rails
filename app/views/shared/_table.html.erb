@@ -1,22 +1,28 @@
 <% if !rows.blank? %>
-  <table class='table table-bordered table-striped shared-table'>
-    <thead>
-      <% headers.each do |key|%>
-        <th><%= key %></th>
-      <% end %>
-    </thead>
-      <tbody>
-        <% rows.each do |row| %>
-            <tr>
-          <% row.attributes.each do |_k,v| %>   
-            <td>
-              <p><%= v %></p>
-            </td>
-          <% end %>
-            </tr>
+  <div class="table-wrapper d-flex">
+    <table class='table table-bordered table-striped shared-table'>
+      <thead>
+        <% headers.each do |key|%>
+          <th><%= key %></th>
         <% end %>
-    </tbody>
-  </table>
+        <th>actions</th>
+      </thead>
+        <tbody>
+          <% rows.each do |row| %>
+              <tr>
+            <% row.attributes.each do |_k,v| %>   
+              <td>
+                <p><%= v %></p>
+              </td>
+            <% end %>
+            <td>
+              <%= link_to 'View', "/campaigns/#{row.campaign_id}/#{model.name.underscore.pluralize}/#{row.id}" %>
+            </td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
 <% else %>
 <div>
   <p>There are no <%= model.name.titlecase.pluralize %> attached to this campaign</p>
