@@ -13,3 +13,15 @@
     }
   }
 }
+.PlayerCharacter {
+  overflow-x: scroll;
+  
+  .character-sheet-frame {
+    width: 100%;
+    height: 750px;
+  }
+  .info {
+    display: flex;
+    justify-content: space-around;
+  }
+}
