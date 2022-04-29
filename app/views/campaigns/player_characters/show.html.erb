@@ -1,0 +1,44 @@
+<div class='page-wrapper PlayerCharacter'>
+  <div class='header text-center'>
+    <h1><%= @player_character.name %></h1>
+    <% if @player_character.icon.attached? %>
+      <%= image_tag @player_character.icon.variant(resize: "200 x 200") %>
+    <% end %>
+    <p><%= "Level #{@player_character.level} #{@player_character.race} #{@player_character.character_class}" %></p>
+  </div>
+  <div class="page-header-end pb-2">
+    <%= link_to 'Edit', edit_campaign_player_character_path(@campaign, @player_character), class: 'btn btn-primary' %>
+  </div>
+  <div class="body">
+    <div class="card-group pb-2">
+      <div class="double-card card">
+        <div class="card-header text-center">
+          <h2>Character Statistics</h2>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <% @player_character.character_stats.each do |k, v| %>
+              <li class="list-group-item"><%= "#{k.titlecase}: #{v}" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="double-card card">
+        <div class="card-header text-center">
+          <h2>Character Info</h2>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="single-card card text-center">
+      <% if @player_character.character_sheet_url.present? %>
+        <iframe class="character-sheet-frame" src="<%= @player_character.character_sheet_url %>" frameborder="0"></iframe>
+      <% else %>
+        <p>No character sheet attached</p>
+      <% end %>
+    </div>
+  </div>
+</div>

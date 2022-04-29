@@ -3,6 +3,7 @@
 # Table name: player_characters
 #
 #  id                  :bigint           not null, primary key
+#  character_class     :string           not null
 #  character_sheet_url :string
 #  charisma            :integer          not null
 #  constitution        :integer          not null
