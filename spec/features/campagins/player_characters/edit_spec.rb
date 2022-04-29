@@ -17,6 +17,7 @@ describe 'Campaigns PC new spec' do
 
       fill_in :player_character_name, with: 'PC NAME'
       fill_in :player_character_race, with: 'PC RACE'
+      fill_in :player_character_character_class, with: 'PC CLASS'
       fill_in :player_character_character_sheet_url, with: 'some url'
       find('#player_character_level').find(:xpath, 'option[3]').select_option
       find('#player_character_strength').find(:xpath, 'option[4]').select_option
@@ -31,6 +32,7 @@ describe 'Campaigns PC new spec' do
       new_char = PlayerCharacter.last
       expect(new_char.name).to eq('PC NAME')
       expect(new_char.race).to eq('PC RACE')
+      expect(new_char.character_class).to eq('PC CLASS')
       expect(new_char.character_sheet_url).to eq('some url')
       expect(new_char.level).to eq(2)
       expect(new_char.strength).to eq(3)

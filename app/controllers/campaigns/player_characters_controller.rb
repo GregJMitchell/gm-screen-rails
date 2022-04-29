@@ -4,6 +4,8 @@ class Campaigns::PlayerCharactersController < Campaigns::BaseController
 
   def index; end
 
+  def show; end
+
   def new; end
 
   def edit; end
@@ -12,7 +14,7 @@ class Campaigns::PlayerCharactersController < Campaigns::BaseController
     @player_character.assign_attributes(player_character_params)
     if @player_character.save
       flash[:success] = "#{@player_character.name} was created and added to your campaign"
-      redirect_to campaign_path(@campaign)
+      redirect_to campaign_player_character_path(@campaign, @player_character)
     else
       flash[:error] = @player_character.errors.full_messages.to_sentence
       render :new
@@ -23,7 +25,7 @@ class Campaigns::PlayerCharactersController < Campaigns::BaseController
     @player_character.assign_attributes(player_character_params)
     if @player_character.save
       flash[:success] = "#{@player_character.name} updated"
-      redirect_to campaign_path(@campaign)
+      redirect_to campaign_player_character_path(@campaign, @player_character)
     else
       flash[:error] = @player_character.errors.full_messages.to_sentence
       render :edit
@@ -56,6 +58,8 @@ class Campaigns::PlayerCharactersController < Campaigns::BaseController
         :intelligence,
         :wisdom,
         :charisma,
+        :character_class,
+        :icon
       )
     end
 end
