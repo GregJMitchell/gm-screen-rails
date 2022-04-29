@@ -12,6 +12,7 @@ class CreatePlayerCharacters < ActiveRecord::Migration[6.1]
       t.integer :intelligence, null: false
       t.integer :wisdom, null: false
       t.integer :charisma, null: false
+      t.string :character_class, null: false
 
       t.timestamps
     end
