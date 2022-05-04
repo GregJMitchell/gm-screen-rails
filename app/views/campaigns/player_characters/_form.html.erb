@@ -24,7 +24,7 @@
 
     <div class="form-group m-2 text-center">
       <label for="#level">Player Character Level <sup class='text-danger'>* required</sup></label>
-      <%= form.select :level, options_for_select(1..20, 1), {include_blank: 'Level', selected: @player_character.level || 1}, {class: 'form-control',} %>
+      <%= form.select :level, options_for_select(1..20, @player_character.level || 1), {include_blank: 'Level'}, {class: 'form-control',} %>
     </div>
 
     <div class="form-group m-2 text-center">
@@ -32,29 +32,29 @@
       <div class='stat-container'>
         <div class='stat m-2'>
           <label for="#strength">Strength <sup class='text-danger'>* required</sup></label>
-          <%= form.select :strength, options_for_select(1..30, @player_character.strength), {include_blank: 'Strength'}, {class: 'form-control stat-select',} %>
+          <%= form.number_field :strength, {class: 'form-control stat-select', min: 0, max: 30} %>
         </div>
         <div class='stat m-2'>
           <label for="#dexterity">Dexterity <sup class='text-danger'>* required</sup></label>
-          <%= form.select :dexterity, options_for_select(1..30, @player_character.dexterity), {include_blank: 'Dexterity'}, {class: 'form-control stat-select',} %>
+          <%= form.number_field :dexterity, {class: 'form-control stat-select', min: 0, max: 30} %>
         </div>
         <div class='stat m-2'>
           <label for="#constitution">Constitution <sup class='text-danger'>* required</sup></label>
-          <%= form.select :constitution, options_for_select(1..30, @player_character.constitution), {include_blank: 'Constitution'}, {class: 'form-control stat-select',} %>
+          <%= form.number_field :constitution, {class: 'form-control stat-select', min: 0, max: 30} %>
         </div>
       </div>
       <div class='stat-container'>
         <div class='stat m-2'>
           <label for="#intelligence">Intelligence <sup class='text-danger'>* required</sup></label>
-          <%= form.select :intelligence, options_for_select(1..30, @player_character.intelligence), {include_blank: 'Intelligence'}, {class: 'form-control stat-select',} %>
+          <%= form.number_field :intelligence, {class: 'form-control stat-select', min: 0, max: 30} %>
         </div>
         <div class='stat m-2'>
           <label for="#wisdom">Wisdom <sup class='text-danger'>* required</sup></label>
-          <%= form.select :wisdom, options_for_select(1..30, @player_character.wisdom), {include_blank: 'Wisdom'}, {class: 'form-control stat-select',} %>
+          <%= form.number_field :wisdom, {class: 'form-control stat-select', min: 0, max: 30} %>
         </div>
         <div class='stat m-2'>
           <label for="#charisma">Charisma <sup class='text-danger'>* required</sup></label>
-          <%= form.select :charisma, options_for_select(1..30, @player_character.charisma), {include_blank: 'Charisma'}, {class: 'form-control stat-select',} %>
+          <%= form.number_field :charisma, {class: 'form-control stat-select', min: 0, max: 30} %>
         </div>
       </div>
 

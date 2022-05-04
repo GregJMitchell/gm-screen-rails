@@ -19,13 +19,13 @@ describe 'Campaigns PC new spec' do
       fill_in :player_character_race, with: 'PC RACE'
       fill_in :player_character_character_class, with: 'PC CLASS'
       fill_in :player_character_character_sheet_url, with: 'some url'
+      fill_in :player_character_strength, with: 10
+      fill_in :player_character_dexterity, with: 10
+      fill_in :player_character_constitution, with: 10
+      fill_in :player_character_intelligence, with: 10
+      fill_in :player_character_wisdom, with: 10
+      fill_in :player_character_charisma, with: 10
       find('#player_character_level').find(:xpath, 'option[3]').select_option
-      find('#player_character_strength').find(:xpath, 'option[4]').select_option
-      find('#player_character_dexterity').find(:xpath, 'option[5]').select_option
-      find('#player_character_constitution').find(:xpath, 'option[6]').select_option
-      find('#player_character_intelligence').find(:xpath, 'option[7]').select_option
-      find('#player_character_wisdom').find(:xpath, 'option[8]').select_option
-      find('#player_character_charisma').find(:xpath, 'option[9]').select_option
 
       click_on 'Update Player character'
 
@@ -35,12 +35,12 @@ describe 'Campaigns PC new spec' do
       expect(new_char.character_class).to eq('PC CLASS')
       expect(new_char.character_sheet_url).to eq('some url')
       expect(new_char.level).to eq(2)
-      expect(new_char.strength).to eq(3)
-      expect(new_char.dexterity).to eq(4)
-      expect(new_char.constitution).to eq(5)
-      expect(new_char.intelligence).to eq(6)
-      expect(new_char.wisdom).to eq(7)
-      expect(new_char.charisma).to eq(8)
+      expect(new_char.strength).to eq(10)
+      expect(new_char.dexterity).to eq(10)
+      expect(new_char.constitution).to eq(10)
+      expect(new_char.intelligence).to eq(10)
+      expect(new_char.wisdom).to eq(10)
+      expect(new_char.charisma).to eq(10)
     end
   end
 end
