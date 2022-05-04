@@ -61,7 +61,7 @@ class PlayerCharacter < ApplicationRecord
     end
 
     def valid_icon_size
-      if icon.attached? && FILE_VALIDATIONS[:max_size] > self.icon.attachment.blob.byte_size
+      if icon.attached? && FILE_VALIDATIONS[:max_size] < self.icon.attachment.blob.byte_size
         errors.add(:icon, 'Must be smaller than 5MB')
       end
     end
