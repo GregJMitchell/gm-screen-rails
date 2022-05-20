@@ -48,10 +48,10 @@ group :development, :test do
   gem 'rspec-rails', '5.0.1'
   gem 'shoulda-matchers', '4.5.1'
   gem 'faker', '2.17.0'
-  gem 'factory_bot_rails', '6.1.0'
+  gem 'factory_bot_rails', '6.2.0'
   gem 'listen', '3.4.1'
   gem 'annotate', '3.2'
-  gem 'spring', '2.1.1'
+  gem 'spring', '3'
 end
 
 group :development do
