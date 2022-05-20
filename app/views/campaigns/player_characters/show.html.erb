@@ -34,8 +34,8 @@
       </div>
     </div>
     <div class="single-card card text-center">
-      <% if @player_character.character_sheet_url.present? %>
-        <iframe class="character-sheet-frame" src="<%= @player_character.character_sheet_url %>" frameborder="0"></iframe>
+      <% if @player_character.sheet_url.present? %>
+        <iframe class="character-sheet-frame" src="<%= @player_character.sheet_url %>" frameborder="0"></iframe>
       <% else %>
         <p>No character sheet attached</p>
       <% end %>
