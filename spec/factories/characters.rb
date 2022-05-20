@@ -38,22 +38,32 @@
 #  fk_rails_...  (monster_type_id => monster_types.id)
 #  fk_rails_...  (size_category_id => size_categories.id)
 #
-require 'rails_helper'
-
-RSpec.describe PlayerCharacter, type: :model do
-  describe 'relationships' do
-    it { should belong_to(:campaign) }
+FactoryBot.define do
+  factory :character do
+    name { 'MyString' }
+    campaign
+    strength { 1 }
+    dexterity { 1 }
+    constitution { 1 }
+    intelligence { 1 }
+    wisdom { 1 }
+    charisma { 1 }
+    backstory { 'MyText' }
+    size_category
+    alignment
+    monster_type { nil }
+    race { 'MyString' }
+    character_class { 'MyString' }
   end
 
-  describe 'validations' do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:race) }
-    it { should validate_presence_of(:level) }
-    it { should validate_presence_of(:strength) }
-    it { should validate_presence_of(:dexterity) }
-    it { should validate_presence_of(:constitution) }
-    it { should validate_presence_of(:intelligence) }
-    it { should validate_presence_of(:wisdom) }
-    it { should validate_presence_of(:charisma) }
+  factory :player_character, parent: :character, class: PlayerCharacter do
+    level { 1 }
+    type { 'PlayerCharacter' }
+  end
+
+  factory :non_player_character, parent: :character, class: NonPlayerCharacter do
+    type { 'NonPlayerCharacter' }
+    monster_type
+    challenge_rating { 1 }
   end
 end

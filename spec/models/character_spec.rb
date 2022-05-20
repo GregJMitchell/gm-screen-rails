@@ -40,7 +40,7 @@
 #
 require 'rails_helper'
 
-RSpec.describe PlayerCharacter, type: :model do
+RSpec.describe Character, type: :model do
   describe 'relationships' do
     it { should belong_to(:campaign) }
   end
@@ -48,7 +48,6 @@ RSpec.describe PlayerCharacter, type: :model do
   describe 'validations' do
     it { should validate_presence_of(:name) }
     it { should validate_presence_of(:race) }
-    it { should validate_presence_of(:level) }
     it { should validate_presence_of(:strength) }
     it { should validate_presence_of(:dexterity) }
     it { should validate_presence_of(:constitution) }
