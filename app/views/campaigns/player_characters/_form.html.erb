@@ -1,5 +1,6 @@
 <%= form_with model: @player_character, url: params[:id] ? campaign_player_character_path(@campaign, @player_character) : campaign_player_characters_path(@campaign), local: true, class: 'PlayerCharacterForm' do |form| %>
-  <h1>Create a New Player Character</h1>
+  <%= render partial: 'campaigns/characters/form', locals: {form: form, resource: @player_character} %>
+  <!---- <h1>Create a New Player Character</h1> #>
 
   <div class='form-container m-2'>
     <div class="form-group m-2 text-center">
@@ -28,11 +29,11 @@
     </div>
 
     <div class='stat m-2'>
-      <label for="#alignment_id">Alignment</label>
+      <label for="#alignment_id">Alignment <sup class='text-danger'>* required</sup></label>
       <%= form.collection_select :alignment_id, Alignment.all, :id, :name, {include_blank: 'Select Alignment'}, {multiple: false, class: 'form-control stat-select'} %>
     </div>
     <div class='stat m-2'>
-      <label for="#size_category_id">Size</label>
+      <label for="#size_category_id">Size <sup class='text-danger'>* required</sup></label>
       <%= form.collection_select :size_category_id, SizeCategory.all, :id, :name, {include_blank: 'Select Size'}, {multiple: false, class: 'form-control stat-select'} %>
     </div>
 
@@ -79,4 +80,5 @@
       <%= form.submit  class: 'btn btn-primary' %>
     </div>
   </div>
+  --->
 <% end %>
