@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_29_225126) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_20_213632) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -57,6 +57,33 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_29_225126) do
     t.index ["user_id"], name: "index_campaigns_on_user_id"
   end
 
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.bigint "campaign_id", null: false
+    t.string "type"
+    t.integer "strength"
+    t.integer "dexterity"
+    t.integer "constitution"
+    t.integer "intelligence"
+    t.integer "wisdom"
+    t.integer "charisma"
+    t.text "backstory"
+    t.bigint "size_category_id", null: false
+    t.bigint "alignment_id", null: false
+    t.string "race"
+    t.bigint "monster_type_id"
+    t.integer "challenge_rating"
+    t.integer "level"
+    t.string "character_class"
+    t.string "sheet_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["alignment_id"], name: "index_characters_on_alignment_id"
+    t.index ["campaign_id"], name: "index_characters_on_campaign_id"
+    t.index ["monster_type_id"], name: "index_characters_on_monster_type_id"
+    t.index ["size_category_id"], name: "index_characters_on_size_category_id"
+  end
+
   create_table "cities", force: :cascade do |t|
     t.string "name"
     t.string "gov_type"
@@ -74,42 +101,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_29_225126) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "non_player_characters", force: :cascade do |t|
-    t.string "name"
-    t.text "backstory"
-    t.bigint "campaign_id", null: false
-    t.bigint "size_category_id", null: false
-    t.bigint "alignment_id", null: false
-    t.bigint "monster_type_id", null: false
-    t.string "race"
-    t.integer "challenge_rating"
-    t.string "stat_block_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["alignment_id"], name: "index_non_player_characters_on_alignment_id"
-    t.index ["campaign_id"], name: "index_non_player_characters_on_campaign_id"
-    t.index ["monster_type_id"], name: "index_non_player_characters_on_monster_type_id"
-    t.index ["size_category_id"], name: "index_non_player_characters_on_size_category_id"
-  end
-
-  create_table "player_characters", force: :cascade do |t|
-    t.string "name", null: false
-    t.bigint "campaign_id", null: false
-    t.string "race", null: false
-    t.integer "level", null: false
-    t.string "character_sheet_url"
-    t.integer "strength", null: false
-    t.integer "dexterity", null: false
-    t.integer "constitution", null: false
-    t.integer "intelligence", null: false
-    t.integer "wisdom", null: false
-    t.integer "charisma", null: false
-    t.string "character_class", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["campaign_id"], name: "index_player_characters_on_campaign_id"
   end
 
   create_table "size_categories", force: :cascade do |t|
@@ -134,11 +125,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_29_225126) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "campaigns", "users"
+  add_foreign_key "characters", "alignments"
+  add_foreign_key "characters", "campaigns"
+  add_foreign_key "characters", "monster_types"
+  add_foreign_key "characters", "size_categories"
   add_foreign_key "cities", "campaigns"
-  add_foreign_key "cities", "non_player_characters", column: "leader_id"
-  add_foreign_key "non_player_characters", "alignments"
-  add_foreign_key "non_player_characters", "campaigns"
-  add_foreign_key "non_player_characters", "monster_types"
-  add_foreign_key "non_player_characters", "size_categories"
-  add_foreign_key "player_characters", "campaigns"
+  add_foreign_key "cities", "characters", column: "leader_id"
 end

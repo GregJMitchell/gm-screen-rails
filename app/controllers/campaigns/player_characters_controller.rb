@@ -50,7 +50,7 @@ class Campaigns::PlayerCharactersController < Campaigns::BaseController
       params.require(:player_character).permit(
         :name,
         :race,
-        :character_sheet_url,
+        :sheet_url,
         :level,
         :strength,
         :dexterity,
@@ -59,7 +59,9 @@ class Campaigns::PlayerCharactersController < Campaigns::BaseController
         :wisdom,
         :charisma,
         :character_class,
-        :icon
+        :icon,
+        :alignment_id,
+        :size_category_id
       )
     end
 end

@@ -1,4 +1,4 @@
-class CreateCities < ActiveRecord::Migration[6.1]
+class CreateCities < ActiveRecord::Migration[7.0]
   def change
     create_table :cities do |t|
       t.string :name
@@ -6,7 +6,7 @@ class CreateCities < ActiveRecord::Migration[6.1]
       t.integer :population
       t.text :description
       t.references :campaign, null: false, foreign_key: true
-      t.references :leader, foreign_key: { to_table: :non_player_characters }
+      t.references :leader, foreign_key: { to_table: :characters }
 
       t.timestamps
     end

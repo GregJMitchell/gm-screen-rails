@@ -38,22 +38,40 @@
 #  fk_rails_...  (monster_type_id => monster_types.id)
 #  fk_rails_...  (size_category_id => size_categories.id)
 #
-require 'rails_helper'
+class Character < ApplicationRecord
+  FILE_VALIDATIONS = {
+    content_types: %w[image/png image/jpeg image/gif],
+    max_size: 5.megabytes,
+  }
+  
+  belongs_to :campaign
+  belongs_to :size_category
+  belongs_to :alignment
 
-RSpec.describe PlayerCharacter, type: :model do
-  describe 'relationships' do
-    it { should belong_to(:campaign) }
-  end
+  has_one_attached :icon, dependent: :destroy
 
-  describe 'validations' do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:race) }
-    it { should validate_presence_of(:level) }
-    it { should validate_presence_of(:strength) }
-    it { should validate_presence_of(:dexterity) }
-    it { should validate_presence_of(:constitution) }
-    it { should validate_presence_of(:intelligence) }
-    it { should validate_presence_of(:wisdom) }
-    it { should validate_presence_of(:charisma) }
-  end
+  validate :valid_icon_mime, :valid_icon_size
+
+  validates :strength,
+            :dexterity,
+            :constitution,
+            :intelligence,
+            :wisdom,
+            :charisma, numericality: { greater_than: 0, less_than_or_equal_to: 30 },
+                       presence: :true
+
+  validates :name, :race,  presence: :true
+
+  private
+    def valid_icon_mime
+      if icon.attached? && !icon.content_type.in?(FILE_VALIDATIONS[:content_types])
+        errors.add(:icon, "Must be one of #{FILE_VALIDATIONS[:content_types].join(', ')}")
+      end
+    end
+
+    def valid_icon_size
+      if icon.attached? && FILE_VALIDATIONS[:max_size] < self.icon.attachment.blob.byte_size
+        errors.add(:icon, 'Must be smaller than 5MB')
+      end
+    end
 end

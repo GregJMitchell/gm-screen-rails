@@ -1,13 +1,17 @@
 <div class='page-wrapper PlayerCharacter'>
   <div class='header text-center'>
-    <h1><%= @player_character.name %></h1>
-    <% if @player_character.icon.attached? %>
-      <%= image_tag @player_character.icon.variant(resize: "200 x 200") %>
+    <h1><%= resource.name %></h1>
+    <% if resource.icon.attached? %>
+      <%= image_tag resource.icon.variant(resize: "200 x 200") %>
     <% end %>
-    <p><%= "Level #{@player_character.level} #{@player_character.race} #{@player_character.character_class}" %></p>
+    <p><%= "Level #{resource.level} #{resource.race} #{resource.character_class}" %></p>
   </div>
   <div class="page-header-end pb-2">
-    <%= link_to 'Edit', edit_campaign_player_character_path(@campaign, @player_character), class: 'btn btn-primary' %>
+    <% if resource.is_a?(PlayerCharacter) %>
+      <%= link_to 'Edit', edit_campaign_player_character_path(@campaign, resource), class: 'btn btn-primary' %>
+    <% else %>
+      <%= link_to 'Edit', edit_campaign_non_player_character_path(@campaign, resource), class: 'btn btn-primary' %>
+    <% end %>
   </div>
   <div class="body">
     <div class="card-group pb-2">
@@ -17,7 +21,7 @@
         </div>
         <div class="card-body">
           <ul class="list-group list-group-flush">
-            <% @player_character.character_stats.each do |k, v| %>
+            <% resource.character_stats.each do |k, v| %>
               <li class="list-group-item"><%= "#{k.titlecase}: #{v}" %></li>
             <% end %>
           </ul>
@@ -34,8 +38,8 @@
       </div>
     </div>
     <div class="single-card card text-center">
-      <% if @player_character.sheet_url.present? %>
-        <iframe class="character-sheet-frame" src="<%= @player_character.sheet_url %>" frameborder="0"></iframe>
+      <% if resource.sheet_url.present? %>
+        <iframe class="character-sheet-frame" src="<%= resource.sheet_url %>" frameborder="0"></iframe>
       <% else %>
         <p>No character sheet attached</p>
       <% end %>

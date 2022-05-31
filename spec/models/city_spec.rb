@@ -20,7 +20,7 @@
 # Foreign Keys
 #
 #  fk_rails_...  (campaign_id => campaigns.id)
-#  fk_rails_...  (leader_id => non_player_characters.id)
+#  fk_rails_...  (leader_id => characters.id)
 #
 require 'rails_helper'
 
