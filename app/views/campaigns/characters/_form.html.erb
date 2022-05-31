@@ -1,4 +1,4 @@
-  <h1>Create a New Player Character</h1>
+  <h1>Create a New <%= resource.class.name.titleize %></h1>
   <div class='form-container m-2'>
     <div class="form-group m-2 text-center">
       <label for="#name"><%= resource.class.name.titleize %> Name <sup class='text-danger'>* required</sup></label>
@@ -11,18 +11,19 @@
     </div>
 
     <div class="form-group m-2 text-center">
-      <label for="#race"><%= resource.class.name.titleize %>Class <sup class='text-danger'>* required</sup></label>
-      <%= form.text_field :character_class, placeholder: "#{resource.class.name.titleize} Class", class: "form-control" %>
-    </div>
-
-    <div class="form-group m-2 text-center">
       <label for="#character_sheet_url">Character Sheet Url</label>
       <%= form.text_field :sheet_url, placeholder: "Sheet Url", class: "form-control" %>
     </div>
+
     <% if resource.is_a?(PlayerCharacter) %>
       <div class="form-group m-2 text-center">
         <label for="#level"><%= resource.class.name.titleize %>Level <sup class='text-danger'>* required</sup></label>
         <%= form.select :level, options_for_select(1..20, resource.level || 1), {include_blank: 'Level'}, {class: 'form-control',} %>
+      </div>
+
+      <div class="form-group m-2 text-center">
+        <label for="#character_class"><%= resource.class.name.titleize %> Class <sup class='text-danger'>* required</sup></label>
+        <%= form.text_field :character_class, placeholder: "#{resource.class.name.titleize} Class", class: "form-control" %>
       </div>
     <% end %>
 
@@ -50,7 +51,7 @@
     </div>
 
     <div class="form-group m-2 text-center">
-      <label><%= resource.class.name.titleize %>Stats</label>
+      <label><%= resource.class.name.titleize %> Stats</label>
       <div class='stat-container'>
         <div class='stat m-2'>
           <label for="#strength">Strength <sup class='text-danger'>* required</sup></label>
