@@ -9,6 +9,6 @@
 #
 FactoryBot.define do
   factory :monster_type do
-    name { 'MyString' }
+    name { "MyString" }
   end
 end

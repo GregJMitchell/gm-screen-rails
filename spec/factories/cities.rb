@@ -24,10 +24,10 @@
 #
 FactoryBot.define do
   factory :city do
-    name { 'MyString' }
-    gov_type { 'MyString' }
+    name { "MyString" }
+    gov_type { "MyString" }
     population { 1 }
-    description { 'MyText' }
+    description { "MyText" }
     campaign
   end
 end

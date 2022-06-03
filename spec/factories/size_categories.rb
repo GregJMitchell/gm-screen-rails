@@ -10,7 +10,7 @@
 #
 FactoryBot.define do
   factory :size_category do
-    name { 'MyString' }
-    grid_area { 'MyString' }
+    name { "MyString" }
+    grid_area { "MyString" }
   end
 end

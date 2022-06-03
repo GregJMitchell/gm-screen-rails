@@ -38,21 +38,21 @@
 #  fk_rails_...  (monster_type_id => monster_types.id)
 #  fk_rails_...  (size_category_id => size_categories.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Character, type: :model do
-  describe 'relationships' do
-    it { should belong_to(:campaign) }
+  describe "relationships" do
+    it { is_expected.to belong_to(:campaign) }
   end
 
-  describe 'validations' do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:race) }
-    it { should validate_presence_of(:strength) }
-    it { should validate_presence_of(:dexterity) }
-    it { should validate_presence_of(:constitution) }
-    it { should validate_presence_of(:intelligence) }
-    it { should validate_presence_of(:wisdom) }
-    it { should validate_presence_of(:charisma) }
+  describe "validations" do
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:race) }
+    it { is_expected.to validate_presence_of(:strength) }
+    it { is_expected.to validate_presence_of(:dexterity) }
+    it { is_expected.to validate_presence_of(:constitution) }
+    it { is_expected.to validate_presence_of(:intelligence) }
+    it { is_expected.to validate_presence_of(:wisdom) }
+    it { is_expected.to validate_presence_of(:charisma) }
   end
 end

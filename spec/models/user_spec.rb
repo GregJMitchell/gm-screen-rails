@@ -16,10 +16,10 @@
 #  index_users_on_email                 (email) UNIQUE
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
-  describe 'relationships' do
-    it { should have_many(:campaigns) }
+  describe "relationships" do
+    it { is_expected.to have_many(:campaigns) }
   end
 end

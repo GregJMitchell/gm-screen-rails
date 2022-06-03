@@ -2,9 +2,11 @@ class Campaigns::CitiesController < Campaigns::BaseController
   before_action :set_campaign
   before_action :set_city
 
-  def new; end
+  def new
+  end
 
-  def edit; end
+  def edit
+  end
 
   def create
     @city.assign_attributes(city_params)
@@ -30,7 +32,7 @@ class Campaigns::CitiesController < Campaigns::BaseController
 
   def destroy
     if @city.destroy
-      flash[:notice] = 'City deleted'
+      flash[:notice] = "City deleted"
     else
       flash[:error] = @city.errors.full_messages.to_sentence
     end
@@ -38,17 +40,18 @@ class Campaigns::CitiesController < Campaigns::BaseController
   end
 
   private
-    def set_city
-      @city = params[:id] ? City.find(params[:id]) : City.new(campaign: @campaign)
-    end
 
-    def city_params
-      params.require(:city).permit(
-        :name,
-        :description,
-        :gov_type,
-        :population,
-        :leader_id
-      )
-    end
+  def set_city
+    @city = params[:id] ? City.find(params[:id]) : City.new(campaign: @campaign)
+  end
+
+  def city_params
+    params.require(:city).permit(
+      :name,
+      :description,
+      :gov_type,
+      :population,
+      :leader_id
+    )
+  end
 end

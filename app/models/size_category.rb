@@ -9,5 +9,5 @@
 #  updated_at :datetime         not null
 #
 class SizeCategory < ApplicationRecord
-  validates :name, presence: :true
+  validates :name, presence: true
 end

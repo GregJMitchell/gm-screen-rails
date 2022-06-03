@@ -17,23 +17,22 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Campaign, type: :model do
-  describe 'relationships' do
-    it { should belong_to :user }
+  describe "relationships" do
+    it { is_expected.to belong_to :user }
   end
 
-  describe 'validations' do
-    it { should validate_presence_of :title }
-    it { should validate_presence_of :description }
+  describe "validations" do
+    it { is_expected.to validate_presence_of :title }
+    it { is_expected.to validate_presence_of :description }
   end
 
-
-  describe 'model methods' do
-    describe 'instance methods' do
-      describe '.last_updated' do
-        it 'should return the number of minutes since last update to record' do
+  describe "model methods" do
+    describe "instance methods" do
+      describe ".last_updated" do
+        it "returns the number of minutes since last update to record" do
           camp = create(:campaign, updated_at: 5.minutes.ago)
           expect(camp.last_updated).to eq(5)
         end
