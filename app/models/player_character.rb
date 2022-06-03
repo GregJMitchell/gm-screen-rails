@@ -41,10 +41,9 @@
 class PlayerCharacter < Character
   belongs_to :monster_type, optional: true
 
-  validates :level, presence: :true
-
+  validates :level, presence: true
 
   def character_stats
-    attributes.slice('strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma')
+    attributes.slice("strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma")
   end
 end

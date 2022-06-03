@@ -22,25 +22,25 @@
 #  fk_rails_...  (campaign_id => campaigns.id)
 #  fk_rails_...  (leader_id => characters.id)
 #
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe City, type: :model do
-  describe 'relationships' do
-    it { should belong_to(:campaign) }
+  describe "relationships" do
+    it { is_expected.to belong_to(:campaign) }
 
-    it 'should not have a leader (opt)' do
-      expect { create :city }.to change(City, :count).by(1)
+    it "does not have a leader (opt)" do
+      expect { create :city }.to change { City.count }.by(1)
     end
 
-    it 'should have a leader (opt)' do
+    it "has a leader (opt)" do
       npc = create :non_player_character
-      expect { create(:city, leader: npc) }.to change(City, :count).by(1)
+      expect { create(:city, leader: npc) }.to change { City.count }.by(1)
     end
   end
 
-  describe 'validations' do
-    it { should validate_presence_of :name }
-    it { should validate_presence_of :gov_type }
-    it { should validate_numericality_of :population }
+  describe "validations" do
+    it { is_expected.to validate_presence_of :name }
+    it { is_expected.to validate_presence_of :gov_type }
+    it { is_expected.to validate_numericality_of :population }
   end
 end

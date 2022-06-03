@@ -40,7 +40,7 @@
 #
 FactoryBot.define do
   factory :character do
-    name { 'MyString' }
+    name { "MyString" }
     campaign
     strength { 1 }
     dexterity { 1 }
@@ -48,21 +48,21 @@ FactoryBot.define do
     intelligence { 1 }
     wisdom { 1 }
     charisma { 1 }
-    backstory { 'MyText' }
+    backstory { "MyText" }
     size_category
     alignment
     monster_type { nil }
-    race { 'MyString' }
-    character_class { 'MyString' }
+    race { "MyString" }
+    character_class { "MyString" }
   end
 
-  factory :player_character, parent: :character, class: PlayerCharacter do
+  factory :player_character, parent: :character, class: "PlayerCharacter" do
     level { 1 }
-    type { 'PlayerCharacter' }
+    type { "PlayerCharacter" }
   end
 
-  factory :non_player_character, parent: :character, class: NonPlayerCharacter do
-    type { 'NonPlayerCharacter' }
+  factory :non_player_character, parent: :character, class: "NonPlayerCharacter" do
+    type { "NonPlayerCharacter" }
     monster_type
     challenge_rating { 1 }
   end

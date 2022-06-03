@@ -1,295 +1,849 @@
+inherit_from: .rubocop_todo.yml
+
 require:
   - rubocop-performance
   - rubocop-rails
+  - rubocop-rspec
 
 AllCops:
-  TargetRubyVersion: 2.7
-  # RuboCop has a bunch of cops enabled by default. This setting tells RuboCop
-  # to ignore them, so only the ones explicitly set in this file are enabled.
-  DisabledByDefault: true
-  SuggestExtensions: false
-  Exclude:
-    - '**/tmp/**/*'
-    - '**/templates/**/*'
-    - '**/vendor/**/*'
-    - 'actionpack/lib/action_dispatch/journey/parser.rb'
-    - 'actionmailbox/test/dummy/**/*'
-    - 'actiontext/test/dummy/**/*'
-    - '**/node_modules/**/*'
-    - 'db/schema.rb'
+  TargetRubyVersion: 3.1
+  TargetRailsVersion: 7
 
-Performance:
-  Exclude:
-    - '**/test/**/*'
-
-# Prefer assert_not over assert !
-Rails/AssertNot:
-  Include:
-    - '**/test/**/*'
-
-# Prefer assert_not_x over refute_x
-Rails/RefuteMethods:
-  Include:
-    - '**/test/**/*'
-
-Rails/IndexBy:
+Gemspec/DateAssignment: # (new in 1.10)
   Enabled: true
 
-Rails/IndexWith:
+Gemspec/RequireMFA: # new in 1.23
   Enabled: true
 
-# Prefer &&/|| over and/or.
-Style/AndOr:
-  Enabled: true
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
 
-# Align `when` with `case`.
-Layout/CaseIndentation:
-  Enabled: true
+Layout/ArrayAlignment:
+  EnforcedStyle: with_fixed_indentation
 
-Layout/ClosingHeredocIndentation:
-  Enabled: true
+Layout/EmptyLinesAroundAttributeAccessor:
+  AllowAliasSyntax: false
+  AllowedMethods: []
 
-# Align comments with method definitions.
-Layout/CommentIndentation:
-  Enabled: true
-
-Layout/ElseAlignment:
-  Enabled: true
-
-# Align `end` with the matching keyword or starting expression except for
-# assignments, where it should be aligned with the LHS.
 Layout/EndAlignment:
-  Enabled: true
-  EnforcedStyleAlignWith: variable
-  AutoCorrect: true
+  EnforcedStyleAlignWith: start_of_line
 
-Layout/EndOfLine:
+Layout/LineEndStringConcatenationIndentation: # new in 1.18
   Enabled: true
+  EnforcedStyle: indented
 
-Layout/EmptyLineAfterMagicComment:
-  Enabled: true
+# SupportedStyles: special_inside_parentheses, consistent, align_brackets
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
 
-Layout/EmptyLinesAroundAccessModifier:
-  Enabled: true
-  EnforcedStyle: only_before
-
-Layout/EmptyLinesAroundBlockBody:
+Layout/FirstArrayElementLineBreak:
   Enabled: true
 
-# In a regular class definition, no empty lines around the body.
-Layout/EmptyLinesAroundClassBody:
-  Enabled: true
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
 
-# In a regular method definition, no empty lines around the body.
-Layout/EmptyLinesAroundMethodBody:
+Layout/LineLength:
+  Description: 'Checks that line length does not exceed the configured limit.'
   Enabled: true
+  Max: 120
+  # To make it possible to copy or click on URIs in the code, we allow lines
+  # containing a URI to be longer than Max.
 
-# In a regular module definition, no empty lines around the body.
-Layout/EmptyLinesAroundModuleBody:
-  Enabled: true
-
-# Use Ruby >= 1.9 syntax for hashes. Prefer { a: :b } over { :a => :b }.
-Style/HashSyntax:
-  Enabled: true
-
-# Method definitions after `private` or `protected` isolated calls need one
-# extra level of indentation.
-Layout/IndentationConsistency:
-  Enabled: true
-  EnforcedStyle: indented_internal_methods
-
-# Two spaces, no tabs (for indentation).
-Layout/IndentationWidth:
-  Enabled: true
-
-Layout/LeadingCommentSpace:
-  Enabled: true
-
-Layout/SpaceAfterColon:
-  Enabled: true
-
-Layout/SpaceAfterComma:
-  Enabled: true
-
-Layout/SpaceAfterSemicolon:
-  Enabled: true
-
-Layout/SpaceAroundEqualsInParameterDefault:
-  Enabled: true
-
-Layout/SpaceAroundKeyword:
-  Enabled: true
-
-Layout/SpaceAroundOperators:
-  Enabled: true
-
-Layout/SpaceBeforeComma:
-  Enabled: true
-
-Layout/SpaceBeforeComment:
-  Enabled: true
-
-Layout/SpaceBeforeFirstArg:
-  Enabled: true
-
-Style/DefWithParentheses:
-  Enabled: true
-
-# Defining a method with parameters needs parentheses.
-Style/MethodDefParentheses:
-  Enabled: true
-
-Style/FrozenStringLiteralComment:
+Layout/SpaceInLambdaLiteral:
+  Description: 'Checks for spaces in lambda literals.'
   Enabled: false
-  EnforcedStyle: always
+#  EnforcedStyle: require_no_space
+#  SupportedStyles:
+#    - require_no_space
+#    - require_space
+
+Layout/SpaceBeforeBrackets: # (new in 1.7)
+  Enabled: true
+
+Lint/AmbiguousBlockAssociation:
   Exclude:
-    - 'actionview/test/**/*.builder'
-    - 'actionview/test/**/*.ruby'
-    - 'actionpack/test/**/*.builder'
-    - 'actionpack/test/**/*.ruby'
-    - 'activestorage/db/migrate/**/*.rb'
-    - 'activestorage/db/update_migrate/**/*.rb'
-    - 'actionmailbox/db/migrate/**/*.rb'
-    - 'actiontext/db/migrate/**/*.rb'
+    - "spec/**/*"
 
-Style/RedundantFreeze:
+Lint/MissingSuper:
+  Description: >-
+    This cop checks for the presence of constructors and lifecycle callbacks
+    without calls to `super`'.
+  Enabled: false
+
+Lint/AmbiguousAssignment: # (new in 1.7)
+  Enabled: true
+Lint/DeprecatedConstants: # (new in 1.8)
+  Enabled: true
+Lint/DuplicateBranch: # (new in 1.3)
+  Enabled: true
+Lint/DuplicateRegexpCharacterClassElement: # (new in 1.1)
+  Enabled: true
+Lint/EmptyBlock: # (new in 1.1)
+  Enabled: true
+Lint/EmptyClass: # (new in 1.3)
+  Enabled: true
+Lint/LambdaWithoutLiteralBlock: # (new in 1.8)
+  Enabled: true
+Lint/NoReturnInBeginEndBlocks: # (new in 1.2)
+  Enabled: true
+Lint/NumberedParameterAssignment: # (new in 1.9)
+  Enabled: true
+Lint/OrAssignmentToConstant: # (new in 1.9)
+  Enabled: true
+Lint/RedundantDirGlobSort: # (new in 1.8)
+  Enabled: true
+Lint/RefinementImportMethods: # new in 1.27
+  Enabled: true
+Lint/SymbolConversion: # (new in 1.9)
+  Enabled: true
+Lint/ToEnumArguments: # (new in 1.1)
+  Enabled: true
+Lint/TripleQuotes: # (new in 1.9)
+  Enabled: true
+Lint/UnexpectedBlockArity: # (new in 1.5)
+  Enabled: true
+Lint/UnmodifiedReduceAccumulator: # (new in 1.1)
+  Enabled: true
+Lint/AmbiguousOperatorPrecedence: # new in 1.21
+  Enabled: true
+Lint/AmbiguousRange: # new in 1.19
+  Enabled: true
+Lint/EmptyInPattern: # new in 1.16
+  Enabled: true
+Lint/IncompatibleIoSelectWithFiberScheduler: # new in 1.21
+  Enabled: true
+Lint/RequireRelativeSelfPath: # new in 1.22
+  Enabled: true
+Lint/UselessRuby2Keywords: # new in 1.23
   Enabled: true
 
-# Use `foo {}` not `foo{}`.
-Layout/SpaceBeforeBlockBraces:
+Metrics/AbcSize:
+  Description: >-
+    A calculated magnitude based on number of assignments,
+    branches, and conditions.
+#  Reference:
+#    - http://c2.com/cgi/wiki?AbcMetric
+#    - https://en.wikipedia.org/wiki/ABC_Software_Metric
+  Enabled: false
+#  Max: 17
+
+Metrics/BlockLength:
+  Description: 'Avoid long blocks with many lines.'
+  Enabled: false
+#  Max: 25
+#  Exclude:
+#    - '**/*.gemspec'
+
+Metrics/ClassLength:
+  Description: 'Avoid classes longer than 100 lines of code.'
+  Enabled: false
+#  Max: 100
+
+Metrics/CyclomaticComplexity:
+  Description: >-
+    A complexity metric that is strongly correlated to the number
+    of test cases needed to validate a method.
+  Enabled: false
+#  Max: 7
+
+Metrics/MethodLength:
+  Description: 'Avoid methods longer than 10 lines of code.'
+  Enabled: false
+#  Max: 10
+
+Metrics/ModuleLength:
+  Description: 'Avoid modules longer than 100 lines of code.'
+  Enabled: false
+#  Max: 100
+
+Metrics/PerceivedComplexity:
+  Description: >-
+    A complexity metric geared towards measuring complexity for a
+    human reader.
+  Enabled: false
+#  Max: 8
+
+Naming/AccessorMethodName:
+  Description: Check the naming of accessor methods for get_/set_.
+  Enabled: false
+
+Naming/BlockForwarding: # new in 1.24
   Enabled: true
 
-# Use `foo { bar }` not `foo {bar}`.
-Layout/SpaceInsideBlockBraces:
-  Enabled: true
-  EnforcedStyleForEmptyBraces: space
+Naming/MemoizedInstanceVariableName:
+  Description: >-
+    Memoized method name should match memo instance variable name.
+  Enabled: false
+#  EnforcedStyleForLeadingUnderscores: disallowed
+#  SupportedStylesForLeadingUnderscores:
+#    - disallowed
+#    - required
+#    - optional
 
-# Use `{ a: 1 }` not `{a:1}`.
-Layout/SpaceInsideHashLiteralBraces:
+Naming/PredicateName:
+  Description: 'Check the names of predicate methods.'
+  Enabled: false
+  # Predicate name prefixes.
+#  NamePrefix:
+#    - is_
+#    - has_
+#    - have_
+  # Predicate name prefixes that should be removed.
+#  ForbiddenPrefixes:
+#    - is_
+#    - has_
+#    - have_
+  # Predicate names which, despite having a forbidden prefix, or no `?`,
+  # should still be accepted
+#  AllowedMethods:
+#    - is_a?
+  # Method definition macros for dynamically generated methods.
+#  MethodDefinitionMacros:
+#    - define_method
+#    - define_singleton_method
+  # Exclude Rspec specs because there is a strong convention to write spec
+  # helpers in the form of `have_something` or `be_something`.
+#  Exclude:
+#    - 'spec/**/*'
+
+Naming/VariableNumber:
+  Description: 'Use the configured style when numbering symbols, methods and variables.'
+  Enabled: false
+#  EnforcedStyle: normalcase
+#  SupportedStyles:
+#    - snake_case
+#    - normalcase
+#    - non_integer
+#  CheckMethodNames: true
+#  CheckSymbols: true
+#  AllowedIdentifiers:
+#    - capture3     # Open3.capture3
+#    - iso8601      # Time#iso8601
+#    - rfc1123_date # CGI.rfc1123_date
+#    - rfc822       # Time#rfc822
+#    - rfc2822      # Time#rfc2822
+#    - rfc3339      # DateTime.rfc3339
+
+Performance/AncestorsInclude: # new in 1.7
+  Enabled: true
+Performance/BigDecimalWithNumericArgument: # new in 1.7
+  Enabled: true
+Performance/BlockGivenWithExplicitBlock: # new in 1.9
+  Enabled: true
+Performance/CollectionLiteralInLoop: # new in 1.8
+  Enabled: true
+Performance/ConcurrentMonotonicTime: # new in 1.12
+  Enabled: true
+Performance/ConstantRegexp: # new in 1.9
+  Enabled: true
+Performance/MapCompact: # new in 1.11
+  Enabled: true
+Performance/MethodObjectAsBlock: # new in 1.9
+  Enabled: true
+Performance/RedundantEqualityComparisonBlock: # new in 1.10
+  Enabled: true
+Performance/RedundantSortBlock: # new in 1.7
+  Enabled: true
+Performance/RedundantSplitRegexpArgument: # new in 1.10
+  Enabled: true
+Performance/RedundantStringChars: # new in 1.7
+  Enabled: true
+Performance/ReverseFirst: # new in 1.7
+  Enabled: true
+Performance/SortReverse: # new in 1.7
+  Enabled: true
+Performance/Squeeze: # new in 1.7
+  Enabled: true
+Performance/StringIdentifierArgument: # new in 1.13
+  Enabled: true
+Performance/StringInclude: # new in 1.7
+  Enabled: true
+Performance/Sum: # new in 1.8
   Enabled: true
 
-Layout/SpaceInsideParens:
+Rails/AfterCommitOverride: # new in 2.8
+  Enabled: true
+Rails/AttributeDefaultBlockValue: # new in 2.9
+  Enabled: true
+Rails/CompactBlank: # new in 2.13
+  Enabled: true
+Rails/DurationArithmetic: # new in 2.13
+  Enabled: true
+Rails/EagerEvaluationLogMessage: # new in 2.11
+  Enabled: true
+Rails/ExpandedDateRange: # new in 2.11
+  Enabled: true
+Rails/FindById: # new in 2.7
+  Enabled: true
+Rails/I18nLocaleAssignment: # new in 2.11
+  Enabled: true
+Rails/Inquiry: # new in 2.7
+  Enabled: true
+Rails/MailerName: # new in 2.7
+  Enabled: true
+Rails/MatchRoute: # new in 2.7
+  Enabled: true
+Rails/NegateInclude: # new in 2.7
+  Enabled: true
+Rails/Pluck: # new in 2.7
+  Enabled: true
+Rails/RedundantPresenceValidationOnBelongsTo: # new in 2.13
+  Enabled: true
+Rails/RedundantTravelBack: # new in 2.12
+  Enabled: true
+Rails/RenderInline: # new in 2.7
+  Enabled: true
+Rails/RenderPlainText: # new in 2.7
+  Enabled: true
+Rails/RootJoinChain: # new in 2.13
+  Enabled: true
+Rails/ShortI18n: # new in 2.7
+  Enabled: true
+Rails/SquishedSQLHeredocs: # new in 2.8
+  Enabled: true
+Rails/WhereExists: # new in 2.7
   Enabled: true
 
-# Check quotes usage according to lint rule below.
-Style/StringLiterals:
-  Enabled: true
-  EnforcedStyle: single_quotes
-  IndentationWidth: 2
-
-# Detect hard tabs, no hard tabs.
-Layout/IndentationStyle:
-  Enabled: true
-  EnforcedStyle: spaces
-
-# Empty lines should not have any spaces.
-Layout/TrailingEmptyLines:
+Rails/ActiveRecordCallbacksOrder:
+  Description: 'This cop checks that Active Record callbacks are declared in the order in which they will be executed.'
   Enabled: true
 
-# No trailing whitespace.
-Layout/TrailingWhitespace:
+Rails/AddColumnIndex:
+  Description: 'Prevent accidentally thinking that add_column with index: true will create index'
   Enabled: true
 
-# Use quotes for string literals when they are enough.
-Style/RedundantPercentQ:
+Rails/Date:
+  Description: >-
+    Checks the correct usage of date aware methods,
+    such as Date.today, Date.current etc.
+  Enabled: true
+  EnforcedStyle: flexible
+  # The value `strict` disallows usage of `Date.today`, `Date.current`,
+  # `Date#to_time` etc.
+  # The value `flexible` allows usage of `Date.current`, `Date.yesterday`, etc
+  # (but not `Date.today`) which are overridden by ActiveSupport to handle current
+  # time zone.
+#  EnforcedStyle: flexible
+#  SupportedStyles:
+#    - strict
+#    - flexible
+
+Rails/Delegate:
+  Description: 'Prefer delegate method for delegations.'
+  Enabled: false
+  # When set to true, using the target object as a prefix of the
+  # method name without using the `delegate` method will be a
+  # violation. When set to false, this case is legal.
+#  EnforceForPrefixed: true
+
+Rails/FilePath:
+  Description: 'Use `Rails.root.join` for file path joining.'
+  Enabled: false
+#  EnforcedStyle: slashes
+#  SupportedStyles:
+#    - slashes
+#    - arguments
+
+Rails/HasAndBelongsToMany:
+  Description: 'Prefer has_many :through to has_and_belongs_to_many.'
+  Enabled: false
+
+Rails/HasManyOrHasOneDependent:
+  Description: 'Define the dependent option to the has_many and has_one associations.'
+  Enabled: false
+
+Rails/HelperInstanceVariable:
+  Description: 'Do not use instance variables in helpers.'
+  Enabled: false
+
+Rails/InverseOf:
+  Description: 'Checks for associations where the inverse cannot be determined automatically.'
+  Enabled: false
+
+Rails/NotNullColumn:
+  Description: 'Do not add a NOT NULL column without a default value.'
+  Enabled: false
+#  Include:
+#    - db/migrate/*.rb
+
+Rails/Output:
+  Description: 'Checks for calls to puts, print, etc.'
+  Enabled: false
+
+Rails/OutputSafety:
+  Description: 'The use of `html_safe` or `raw` may be a security risk.'
+  Enabled: false
+
+Rails/ReversibleMigration:
+  Description: 'Checks whether the change method of the migration file is reversible.'
+  Enabled: false
+#  Include:
+#    db/migrate/*.rb
+
+Rails/PluckInWhere:
   Enabled: true
 
-Lint/AmbiguousOperator:
+Rails/SkipsModelValidations:
+  Description: >-
+    Use methods that skips model validations with caution.
+  Enabled: false
+#  ForbiddenMethods:
+#    - decrement!
+#    - decrement_counter
+#    - increment!
+#    - increment_counter
+#    - insert
+#    - insert!
+#    - insert_all
+#    - insert_all!
+#    - toggle!
+#    - touch
+#    - touch_all
+#    - update_all
+#    - update_attribute
+#    - update_column
+#    - update_columns
+#    - update_counters
+#    - upsert
+#    - upsert_all
+#  AllowedMethods: []
+
+Rails/TimeZone:
+  Description: 'Checks the correct usage of time zone aware methods.'
+#  StyleGuide: 'https://rails.rubystyle.guide#time'
+#  Reference: 'http://danilenko.org/2012/7/6/rails_timezones'
+  Enabled: false
+  # The value `strict` means that `Time` should be used with `zone`.
+  # The value `flexible` allows usage of `in_time_zone` instead of `zone`.
+#  EnforcedStyle: flexible
+#  SupportedStyles:
+#    - strict
+#    - flexible
+
+Rails/TimeZoneAssignment:
+  Description: 'Eliminate the possibility of a zone sticking around longer than intended.'
   Enabled: true
 
-Lint/AmbiguousRegexpLiteral:
+RSpec/VariableName:
+  Enabled: true
+  Exclude:
+    - spec/requests/rswag/**/*
+
+Rails/UnusedIgnoredColumns:
+  Description: 'This cop suggests you remove a column that does not exist in the schema from ignored_columns'
   Enabled: true
 
-Lint/DuplicateRequire:
+Rails/WhereEquals:
   Enabled: true
 
-Lint/ErbNewArguments:
+Rails/WhereNot:
   Enabled: true
 
-# Use my_method(my_arg) not my_method( my_arg ) or my_method my_arg.
-Lint/RequireParentheses:
+Security/IoMethods: # new in 1.22
   Enabled: true
 
-Lint/RedundantStringCoercion:
-  Enabled: true
+Security/Open:
+  Description: 'The use of `Kernel#open` and `URI.open` represent a serious security risk.'
+  Enabled: false
 
-Lint/UriEscapeUnescape:
-  Enabled: true
+Security/YAMLLoad:
+  Description: >-
+    Prefer usage of `YAML.safe_load` over `YAML.load` due to potential
+    security issues. See reference for more information.
+  Reference: 'https://ruby-doc.org/stdlib-2.7.0/libdoc/yaml/rdoc/YAML.html#module-YAML-label-Security'
+  Enabled: false
 
-Lint/UselessAssignment:
+Style/ArgumentsForwarding: # new in 1.1
   Enabled: true
-
-Lint/DeprecatedClassMethods:
+Style/CollectionCompact: # new in 1.2
   Enabled: true
-
-Style/ParenthesesAroundCondition:
+Style/DocumentDynamicEvalDefinition: # new in 1.1
   Enabled: true
-
-Style/HashTransformKeys:
+Style/EndlessMethod: # new in 1.8
   Enabled: true
-
-Style/HashTransformValues:
+Style/FileRead: # new in 1.24
   Enabled: true
-
-Style/RedundantBegin:
+Style/FileWrite: # new in 1.24
   Enabled: true
-
-Style/RedundantReturn:
+Style/HashConversion: # new in 1.10
   Enabled: true
-  AllowMultipleReturnValues: true
-
-Style/RedundantRegexpEscape:
+Style/HashExcept: # new in 1.7
   Enabled: true
-
-Style/Semicolon:
+Style/IfWithBooleanLiteralBranches: # new in 1.9
   Enabled: true
-  AllowAsExpressionSeparator: true
-
-# Prefer Foo.method over Foo::method
-Style/ColonMethodCall:
+Style/InPatternThen: # new in 1.16
+  Enabled: true
+Style/MapToHash: # new in 1.24
+  Enabled: true
+Style/MultilineInPatternThen: # new in 1.16
+  Enabled: true
+Style/NegatedIfElseCondition: # new in 1.2
+  Enabled: true
+Style/NestedFileDirname: # new in 1.26
+  Enabled: true
+Style/NilLambda: # new in 1.3
+  Enabled: true
+Style/NumberedParameters: # new in 1.22
+  Enabled: true
+  EnforcedStyle: disallow
+Style/NumberedParametersLimit: # new in 1.22
+  Enabled: true
+Style/OpenStructUse: # new in 1.23
+  Enabled: false
+Style/QuotedSymbols: # new in 1.16
+  Enabled: true
+Style/RedundantArgument: # new in 1.4
+  Enabled: false
+Style/RedundantInitialize: # new in 1.27
+  Enabled: true
+Style/RedundantSelfAssignmentBranch: # new in 1.19
+  Enabled: true
+Style/SelectByRegexp: # new in 1.22
+  Enabled: true
+Style/StringChars: # new in 1.12
+  Enabled: true
+Style/SwapValues: # new in 1.1
   Enabled: true
 
 Style/ClassAndModuleChildren:
+  Description: 'Checks style of children classes and modules.'
+  Enabled: false
+  #
+  # Basically there are two different styles:
+  #
+  # `nested` - have each child on a separate line
+  #   class Foo
+  #     class Bar
+  #     end
+  #   end
+  #
+  # `compact` - combine definitions as much as possible
+  #   class Foo::Bar
+  #   end
+  #
+  # The compact style is only forced, for classes or modules with one child.
+  #  EnforcedStyle: nested
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
   Enabled: false
 
-Style/TrivialAccessors:
-  Enabled: true
+Style/EmptyMethod:
+  Description: 'Checks the formatting of empty method definitions.'
+  EnforcedStyle: expanded
 
-Performance/BindCall:
-  Enabled: true
+Style/FloatDivision:
+  Description: 'For performing float division, coerce one side only.'
+  Reference: 'https://github.com/rubocop-hq/ruby-style-guide/issues/628'
+  Enabled: false
+#  EnforcedStyle: single_coerce
+#  SupportedStyles:
+#    - left_coerce
+#    - right_coerce
+#    - single_coerce
+#    - fdiv
 
-Performance/FlatMap:
-  Enabled: true
+Style/FrozenStringLiteralComment:
+  Description: >-
+    Add the frozen_string_literal comment to the top of files
+    to help transition to frozen string literals by default.
+  Enabled: false
+#  EnforcedStyle: always
 
-Performance/MapCompact:
-  Enabled: true
+Style/HashSyntax:
+  EnforcedShorthandSyntax: either
 
-Performance/SelectMap:
+Style/IfUnlessModifier:
+  Description: >-
+    Favor modifier if/unless usage when you have a
+    single-line body.
   Enabled: false
 
-Performance/RedundantMerge:
+Style/Lambda:
+  Description: 'Use the new lambda literal syntax for single-line blocks.'
+  Enabled: false
+#  EnforcedStyle: line_count_dependent
+#  SupportedStyles:
+#    - line_count_dependent
+#    - lambda
+#    - literal
+
+Style/MethodCallWithArgsParentheses:
+  Description: 'This cop enforces the presence (default) or absence of parentheses in method calls with parameters.'
+  Enabled: true
+  Exclude:
+    - spec/**/*.rb
+    - db/migrate/*.rb
+  IgnoreMacros: true
+  IgnoredMethods:
+    - head
+    - include
+    - raise
+    - render
+    - redirect_to
+    - yield
+    - puts
+    - print
+
+Style/ModuleFunction:
+  Description: 'Checks for usage of `extend self` in modules.'
+  Enabled: false
+#  EnforcedStyle: module_function
+#  SupportedStyles:
+#    - module_function
+#    - extend_self
+#    - forbidden
+
+Style/NumericLiteralPrefix:
+  Description: 'Use smallcase prefixes for numeric literals.'
+  Enabled: false
+#  EnforcedOctalStyle: zero_with_o
+#  SupportedOctalStyles:
+#    - zero_with_o
+#    - zero_only
+
+Style/NumericLiterals:
+  Description: >-
+    Add underscores to large numeric literals to improve their
+    readability.
+  Enabled: false
+#  MinDigits: 5
+#  Strict: false
+
+Style/NumericPredicate:
+  Description: >-
+    Checks for the use of predicate- or comparison methods for
+    numeric comparisons.
+  Enabled: false
+  # Exclude RSpec specs because assertions like `expect(1).to be > 0` cause
+  # false positives.
+#  Exclude:
+#    - 'spec/**/*'
+
+Style/PercentLiteralDelimiters:
+  Description: 'Use `%`-literal delimiters consistently.'
+  Enabled: false
+  # Specify the default preferred delimiter for all types with the 'default' key
+  # Override individual delimiters (even with default specified) by specifying
+  # an individual key
+#  PreferredDelimiters:
+#    default: ()
+#    '%i': '[]'
+#    '%I': '[]'
+#    '%r': '{}'
+#    '%w': '[]'
+#    '%W': '[]'
+
+Style/RedundantBegin:
+  Enabled: false
+
+Style/RescueStandardError:
+  Description: 'Avoid rescuing without specifying an error class.'
+  Enabled: false
+#  EnforcedStyle: explicit
+  # implicit: Do not include the error class, `rescue`
+  # explicit: Require an error class `rescue StandardError`
+#  SupportedStyles:
+#    - implicit
+#    - explicit
+
+Style/StringConcatenation:
+  Description: 'Checks for places where string concatenation can be replaced with string interpolation.'
+  Enabled: false
+
+Style/StringLiterals:
+  Description: "Checks if uses of quotes match the configured preference."
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Description: >-
+    Checks if uses of quotes inside expressions in interpolated
+    strings match the configured preference.
+  Enabled: false
+#  EnforcedStyle: single_quotes
+#  SupportedStyles:
+#    - single_quotes
+#    - double_quotes
+
+Style/SymbolArray:
+  Description: 'Use percent or brackets for arrays of symbols.'
+  Enabled: false
+#  EnforcedStyle: percent
+#  MinSize: 2
+
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/WordArray:
+  Description: 'Use %w or %W for arrays of words.'
+  Enabled: false
+#  EnforcedStyle: percent
+#  SupportedStyles:
+    # percent style: %w(word1 word2)
+#    - percent
+#     bracket style: ['word1', 'word2']
+#    - brackets
+  # The `MinSize` option causes the `WordArray` rule to be ignored for arrays
+  # smaller than a certain size. The rule is only applied to arrays
+  # whose element count is greater than or equal to `MinSize`.
+#  MinSize: 2
+  # The regular expression `WordRegex` decides what is considered a word.
+#  WordRegex: !ruby/regexp '/\A(?:\p{Word}|\p{Word}-\p{Word}|\n|\t)+\z/'
+
+
+############# RSPEC #############
+
+RSpec/BeforeAfterAll:
+  Description: Check that before/after(:all) isn't being used.
+  Enabled: false
+  Exclude:
+    - spec/spec_helper.rb
+    - spec/rails_helper.rb
+    - spec/support/**/*.rb
+  VersionAdded: '1.12'
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/BeforeAfterAll
+
+RSpec/ContextWording:
+  Description: Checks that `context` docstring starts with an allowed prefix.
+  Enabled: false
+  Prefixes:
+    - when
+    - with
+    - without
+  VersionAdded: '1.20'
+  VersionChanged: 1.20.1
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/ContextWording
+
+RSpec/DescribeClass:
+  Description: Check that the first argument to the top-level describe is a constant.
+  Exclude:
+    - spec/system/**/*
+    - spec/requests/**/*
+  IgnoredMetadata:
+    type:
+      - task
+      - request
+      - system
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/DescribeClass
+
+RSpec/DescribedClass:
+  Description: Checks that tests use `described_class`.
+  Enabled: false
+  SkipBlocks: false
+  EnforcedStyle: described_class
+  SupportedStyles:
+    - described_class
+    - explicit
+  SafeAutoCorrect: false
+  VersionAdded: '1.0'
+  VersionChanged: '1.11'
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/DescribedClass
+
+RSpec/EmptyExampleGroup:
+  Enabled: true
+  Exclude:
+    - spec/requests/rswag/**/*
+
+RSpec/ExampleLength:
+  Description: Checks for long examples.
+  Enabled: false
+  Max: 5
+  VersionAdded: '1.5'
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/ExampleLength
+
+RSpec/ExpectActual:
+  Description: Checks for `expect(...)` calls containing literal values.
+  Enabled: false
+  Exclude:
+    - spec/routing/**/*
+  VersionAdded: '1.7'
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/ExpectActual
+
+RSpec/ExpectChange:
+  Description: Checks for consistent style of change matcher.
+  EnforcedStyle: block
+
+RSpec/ImplicitSubject:
+  Description: Checks for usage of implicit subject (`is_expected` / `should`).
+  Enabled: false
+  EnforcedStyle: single_line_only
+  SupportedStyles:
+    - single_line_only
+    - single_statement_only
+    - disallow
+  VersionAdded: '1.29'
+  VersionChanged: '1.30'
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/ImplicitSubject
+
+RSpec/MessageSpies:
+  Description: Checks that message expectations are set using spies.
+  Enabled: false
+  EnforcedStyle: have_received
+  SupportedStyles:
+    - have_received
+    - receive
+  VersionAdded: '1.9'
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/MessageSpies
+
+RSpec/MultipleExpectations:
+  Description: Checks if examples contain too many `expect` calls.
+  Enabled: false
+  Max: 1
+  VersionAdded: '1.7'
+  VersionChanged: '1.21'
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/MultipleExpectations
+
+RSpec/MultipleMemoizedHelpers:
+  Description: Checks if example groups contain too many `let` and `subject` calls.
+  Enabled: false
+  AllowSubject: true
+  Max: 5
+  VersionAdded: '1.43'
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/MultipleMemoizedHelpers
+
+RSpec/NamedSubject:
   Enabled: true
 
-Performance/StartWith:
-  Enabled: true
+RSpec/NestedGroups:
+  Description: Checks for nested example groups.
+  Enabled: false
+  Max: 3
+  VersionAdded: '1.7'
+  VersionChanged: '1.10'
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/NestedGroups
 
-Performance/EndWith:
-  Enabled: true
+RSpec/NotToNot:
+  Description: Checks for consistent method usage for negating expectations.
+  EnforcedStyle: to_not
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/NotToNot
 
-Performance/RegexpMatch:
-  Enabled: true
+RSpec/PredicateMatcher:
+  Description: Prefer using predicate matcher over using predicate method directly.
+  Enabled: false
+  Strict: true
+  EnforcedStyle: inflected
+  AllowedExplicitMatchers: []
+  SupportedStyles:
+    - inflected
+    - explicit
+  SafeAutoCorrect: false
+  VersionAdded: '1.16'
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/PredicateMatcher
 
-Performance/ReverseEach:
-  Enabled: true
+RSpec/StubbedMock:
+  Description: Checks that message expectations do not have a configured response.
+  Enabled: false
+  VersionAdded: '1.44'
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/StubbedMock
 
-Performance/StringReplacement:
-  Enabled: true
-
-Performance/UnfreezeString:
-  Enabled: true
-
-Performance/DeletePrefix:
-  Enabled: true
-
-Performance/DeleteSuffix:
-  Enabled: true
+RSpec/Capybara/FeatureMethods:
+  Description: Checks for consistent method usage in feature specs.
+  Enabled: false
+  EnabledMethods: []
+  VersionAdded: '1.17'
+  VersionChanged: '2.0'
+  StyleGuide: https://www.rubydoc.info/gems/rubocop-rspec/RuboCop/Cop/RSpec/Capybara/FeatureMethods

@@ -19,8 +19,8 @@
 #
 FactoryBot.define do
   factory :campaign do
-    title { 'MyString' }
-    description { 'MyText' }
+    title { "MyString" }
+    description { "MyText" }
     user
   end
 end

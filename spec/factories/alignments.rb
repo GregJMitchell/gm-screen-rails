@@ -9,6 +9,6 @@
 #
 FactoryBot.define do
   factory :alignment do
-    name { 'MyString' }
+    name { "MyString" }
   end
 end
