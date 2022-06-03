@@ -43,7 +43,7 @@ class Character < ApplicationRecord
     content_types: %w[image/png image/jpeg image/gif],
     max_size: 5.megabytes,
   }
-  
+
   belongs_to :campaign
   belongs_to :size_category
   belongs_to :alignment

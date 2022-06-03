@@ -2,13 +2,28 @@ class Campaigns::PlayerCharactersController < Campaigns::BaseController
   before_action :set_campaign
   before_action :set_player_character, except: %i[index]
 
-  def index; end
+  def index
+    add_breadcrumb(@campaign.title.downcase, campaign_path(@campaign))
+    add_breadcrumb('player characters', campaign_player_characters_path(@campaign), true)
+  end
 
-  def show; end
+  def show
+    add_breadcrumb(@campaign.title, campaign_path(@campaign))
+    add_breadcrumb('player characters', campaign_player_characters_path(@campaign))
+    add_breadcrumb(@player_character.name, campaign_player_character_path(@campaign, @player_character), true)
+  end
 
-  def new; end
+  def new
+    add_breadcrumb(@campaign.title, campaign_path(@campaign))
+    add_breadcrumb('player characters', campaign_player_characters_path(@campaign))
+    add_breadcrumb('new', new_campaign_player_character_path(@campaign), true)
+  end
 
-  def edit; end
+  def edit
+    add_breadcrumb(@campaign.title, campaign_path(@campaign))
+    add_breadcrumb('player characters', campaign_player_characters_path(@campaign))
+    add_breadcrumb('edit', edit_campaign_player_character_path(@campaign, @player_character), true)
+  end
 
   def create
     @player_character.assign_attributes(player_character_params)

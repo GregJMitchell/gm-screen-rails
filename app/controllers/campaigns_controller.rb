@@ -3,14 +3,23 @@ class CampaignsController < ApplicationController
   before_action :set_campaign, except: %i[index]
 
   def index
+    add_breadcrumb('campaigns', campaigns_path, true)
+
     @campaigns = current_user.campaigns
   end
 
-  def show; end
+  def show
+    add_breadcrumb('campaigns', campaigns_path)
+    add_breadcrumb(@campaign.title, campaign_path(@campaign), true)
+  end
 
-  def new; end
+  def new
+    add_breadcrumb('campaigns', campaigns_path)
+  end
 
-  def edit; end
+  def edit
+    add_breadcrumb('campaigns', campaigns_path)
+  end
 
   def create
     @campaign.assign_attributes(campaign_params)
