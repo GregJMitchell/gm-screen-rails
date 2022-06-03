@@ -1,0 +1,17 @@
+<% if @breadcrumbs.present? %>
+  <div class="p-2" >
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <% @breadcrumbs.each do |bc|%>
+          <li class="breadcrumb-item <%= bc[:active] == true ? "active" : nil %>">
+            <% if bc[:active] == true %>
+              <%= bc[:label].downcase %>
+            <% else %>
+              <a href="<%= bc[:path] %>"><%= bc[:label].downcase %></a>
+            <% end %>
+          </li>
+        <% end %>
+      </ol>
+    </nav>
+  </div>
+<% end %>
