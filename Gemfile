@@ -33,6 +33,8 @@ gem "bootsnap", ">= 1.4.4", require: false
 
 gem "devise", "4.8.1"
 
+gem "view_component", "2.57.1"
+
 gem "rexml"
 gem "rubocop", "~> 1.25", require: false
 gem "rubocop-performance", "~> 1.13", require: false
