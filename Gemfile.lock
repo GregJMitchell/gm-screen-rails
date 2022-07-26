@@ -286,6 +286,9 @@ GEM
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.1.0)
+    view_component (2.57.1)
+      activesupport (>= 5.0.0, < 8.0)
+      method_source (~> 1.0)
     warden (1.2.9)
       rack (>= 2.0.9)
     webpacker (5.4.3)
@@ -334,6 +337,7 @@ DEPENDENCIES
   turbo-rails (= 1.0.1)
   turbolinks (~> 5)
   tzinfo-data (= 1.2021.1)
+  view_component (= 2.57.1)
   webpacker (~> 5.0)
 
 RUBY VERSION

@@ -15,7 +15,7 @@
               <% if k.in?(%w[created_at updated_at]) %>
                 <p><%= v.localtime.to_time.strftime('%m/%d/%Y %I:%M %p') %></p>
               <% else %>
-                <p><%= v %></p>
+                <p><%= v&.truncate(100) %></p>
               <% end %>
               </td>
             <% end %>
