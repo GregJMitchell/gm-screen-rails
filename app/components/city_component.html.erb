@@ -1,0 +1,36 @@
+<div class="page-wrapper City">
+  <div class='header text-center'>
+    <h1><%= @name %></h1>
+  </div>
+   <div class="page-header-end pb-2">
+    <%= link_to 'Edit', edit_campaign_city_path(@campaign, @city), class: 'btn btn-primary' %>
+  </div>
+  <div class="body">
+    <div class="card-group">
+      <div class="double-card card">
+        <div class="card-header text-center">
+          <h2>Desciption</h2>
+        </div>
+        <div class="card-body">
+          <div class="description">
+            <p><%= @description %></p>
+         </div>
+      </div>
+      </div>
+
+      <div class="double-card card">
+       <div class="card-header text-center">
+          <h2>City Info</h2>
+        </div>
+         <div class="card-body">
+          <div>
+           <ul class="list-group list-group-flush">
+            <li class="list-group-item">Goverment Type: <%= @gov_type %></li>
+            <li class="list-group-item">Population: <%= @population %></li>
+            <li class="list-group-item">Leader: <%= @leader&.name %></li>
+           </ul>
+         </div>
+      </div>
+    </div>
+  </div>
+</div>
