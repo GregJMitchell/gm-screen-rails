@@ -35,12 +35,12 @@ gem "devise", "4.8.1"
 
 gem "view_component", "2.57.1"
 
+gem "matrix"
 gem "rexml"
 gem "rubocop", "~> 1.25", require: false
 gem "rubocop-performance", "~> 1.13", require: false
 gem "rubocop-rails", "~> 2.13"
 gem "rubocop-rspec", "~> 2.1", require: false
-gem "matrix"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", "1.2021.1", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
