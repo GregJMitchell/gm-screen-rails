@@ -16,7 +16,7 @@ RSpec.describe "Show" do
       expect(page).to have_text(city.name)
       expect(page).to have_text(city.gov_type)
       expect(page).to have_text(city.population)
-      expect(page).to have_text(city.leader)
+      expect(page).to have_text(city.leader.name)
     end
   end
 end
