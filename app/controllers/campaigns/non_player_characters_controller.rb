@@ -15,7 +15,7 @@ class Campaigns::NonPlayerCharactersController < Campaigns::BaseController
       redirect_to campaign_path(@campaign)
     else
       flash[:error] = @non_player_character.errors.full_messages.to_sentence
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -26,7 +26,7 @@ class Campaigns::NonPlayerCharactersController < Campaigns::BaseController
       redirect_to campaign_path(@campaign)
     else
       flash[:error] = @non_player_character.errors.full_messages.to_sentence
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

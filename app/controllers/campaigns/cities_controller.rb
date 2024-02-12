@@ -34,7 +34,7 @@ class Campaigns::CitiesController < Campaigns::BaseController
       redirect_to campaign_city_path(@campaign, @city)
     else
       flash[:error] = @city.errors.full_messages.to_sentence
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -45,7 +45,7 @@ class Campaigns::CitiesController < Campaigns::BaseController
       redirect_to campaign_city_path(@campaign, @city)
     else
       flash[:error] = @city.errors.full_messages.to_sentence
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

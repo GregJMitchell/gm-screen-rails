@@ -3,11 +3,11 @@ module Breadcrumber
 
   private
 
-  def init_breadcrumbs
-    @breadcrumbs = []
+  def breadcrumbs
+    @breadcrumbs ||= []
   end
 
   def add_breadcrumb(label, path, active = false)
-    @breadcrumbs << { label: label, path: path, active: active }
+    breadcrumbs << { label: label, path: path, active: active }
   end
 end

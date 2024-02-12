@@ -32,7 +32,7 @@ class Campaigns::PlayerCharactersController < Campaigns::BaseController
       redirect_to campaign_player_character_path(@campaign, @player_character)
     else
       flash[:error] = @player_character.errors.full_messages.to_sentence
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -43,7 +43,7 @@ class Campaigns::PlayerCharactersController < Campaigns::BaseController
       redirect_to campaign_player_character_path(@campaign, @player_character)
     else
       flash[:error] = @player_character.errors.full_messages.to_sentence
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
