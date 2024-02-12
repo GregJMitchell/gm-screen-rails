@@ -28,7 +28,7 @@ class CampaignsController < ApplicationController
       redirect_to campaign_path(@campaign)
     else
       flash[:error] = @campaign.errors.full_messages.to_sentence
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -39,7 +39,7 @@ class CampaignsController < ApplicationController
       redirect_to campaign_path(@campaign)
     else
       flash[:error] = @campaign.errors.full_messages.to_sentence
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

@@ -29,5 +29,6 @@ FactoryBot.define do
     population { 1 }
     description { "MyText" }
     campaign
+    leader { build(:non_player_character) }
   end
 end
