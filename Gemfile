@@ -19,6 +19,7 @@ gem "search_cop", "1.1.0"
 gem "bootsnap", ">= 1.4.4", require: false
 gem "devise", "4.8.1"
 gem "view_component", "2.57.1"
+gem "pagy"
 
 gem "matrix"
 gem "rexml"
@@ -29,7 +30,7 @@ gem "tzinfo-data", "1.2021.1", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :development, :test do
   gem "annotate", "3.2"
   gem "byebug", "11.1.3", platforms: [:mri, :mingw, :x64_mingw]
-  gem "capybara", "3.35.3"
+  gem "capybara"
   gem "factory_bot_rails", "6.2.0"
   gem "faker", "2.17.0"
   gem "listen", "3.4.1"
