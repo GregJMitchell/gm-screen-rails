@@ -26,10 +26,10 @@ describe "Campaigns index spec" do
       end
     end
 
-    it "should paginate campaigns and order by most recent updated_at" do
+    it "paginates campaigns and order by most recent updated_at" do
       visit campaigns_path params: { items: 1 }
 
-      within('#campaigns_list') do
+      within("#campaigns_list") do
         within("#campaign_#{campaign_2.id}") do
           expect(page).to have_content(campaign_2.title)
           expect(page).to have_content(campaign_2.description)
