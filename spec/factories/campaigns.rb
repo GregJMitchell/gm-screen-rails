@@ -19,8 +19,8 @@
 #
 FactoryBot.define do
   factory :campaign do
-    title { "MyString" }
-    description { "MyText" }
+    title { Faker::Fantasy::Tolkien.location }
+    description { Faker::Fantasy::Tolkien.poem }
     user
   end
 end

@@ -3,29 +3,40 @@
   justify-content: center;
   flex-direction: column;
 
+  .campaign-subheader {
+    margin: 0.5rem !important;
+  }
+
   .campaign-card-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     flex-wrap: wrap;
     flex-direction: row;
   }
   .card {
-    width: 32.6%;
-    margin-bottom: 5px;
+    width: 100%;
+    margin: 0.5rem;
     .card-text {
       word-wrap: break-word;
     }
 
-    .campaign-card-footer {
+    .card-body {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
     }
 
-    .campaign-card-nav {
+    .campaign-card-footer {
       display: flex;
       flex-direction: row;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .campaign-card-nav {
+      display: flex;
+      flex-direction: column;
       justify-content: flex-start;
     }
   }

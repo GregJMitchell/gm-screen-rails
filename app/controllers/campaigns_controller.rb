@@ -5,7 +5,7 @@ class CampaignsController < ApplicationController
   def index
     add_breadcrumb("campaigns", campaigns_path, true)
 
-    @campaigns = current_user.campaigns
+    @pagy, @campaigns = pagy(current_user.campaigns.order(updated_at: :desc), items: params[:items])
   end
 
   def show
