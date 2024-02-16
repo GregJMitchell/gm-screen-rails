@@ -1,0 +1,18 @@
+<div id="<%= dom_id campaign %>" class="card bg-light border rounded border-secondary">
+  <div class="card-body">
+    <div>
+      <h2>
+        <%= link_to campaign.title, campaign_path(campaign), class: 'btn btn-link p-0' %>
+      </h2>
+      <p class="card-text"><%= campaign.description %></p>
+    </div>
+    <div class='campaign-card-nav'>
+      <%= link_to 'View', campaign_path(campaign), class: 'm-1 btn btn-primary btn-sm', data: { turbo: false } %>
+      <%= link_to 'Edit', edit_campaign_path(campaign), class: 'm-1 btn btn-secondary btn-sm', data: { turbo: false } %>
+      <%= button_to 'Delete', campaign_path(campaign), method: :delete, class: 'm-1 btn btn-danger btn-sm', data: { turbo: false } %>
+    </div>
+  </div>
+  <div class="card-footer campaign-card-footer">
+    <small class="text-muted">Last updated <%= distance_of_time_in_words(campaign.updated_at, DateTime.now) %> ago</small>
+  </div>
+</div>
