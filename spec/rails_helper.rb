@@ -22,7 +22,7 @@ require "rspec/rails"
 # directory. Alternatively, in the individual `*_spec.rb` files, manually
 # require only the support files necessary.
 #
-# Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].sort.each { |f| require f }
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
@@ -76,11 +76,4 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include ViewComponent::TestHelpers, type: :component
   config.include Capybara::RSpecMatchers, type: :component
-
-  def sign_in(user)
-    visit new_user_session_path
-    fill_in :user_email, with: user.email
-    fill_in :user_password, with: user.password
-    click_on "Log in"
-  end
 end
