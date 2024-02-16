@@ -40,7 +40,7 @@
 #
 FactoryBot.define do
   factory :character do
-    name { "MyString" }
+    name { Faker::Games::DnD.name }
     campaign
     strength { 1 }
     dexterity { 1 }
@@ -48,12 +48,12 @@ FactoryBot.define do
     intelligence { 1 }
     wisdom { 1 }
     charisma { 1 }
-    backstory { "MyText" }
+    backstory { Faker::Games::DnD.background }
     size_category
     alignment
     monster_type { nil }
-    race { "MyString" }
-    character_class { "MyString" }
+    race { Faker::Games::DnD.race }
+    character_class { Faker::Games::DnD.klass }
   end
 
   factory :player_character, parent: :character, class: "PlayerCharacter" do

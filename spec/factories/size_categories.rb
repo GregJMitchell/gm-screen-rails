@@ -10,7 +10,7 @@
 #
 FactoryBot.define do
   factory :size_category do
-    name { "MyString" }
-    grid_area { "MyString" }
+    name { "medium" }
+    grid_area { "1x1" }
   end
 end

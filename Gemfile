@@ -31,7 +31,7 @@ group :development, :test do
   gem "byebug", "11.1.3", platforms: [:mri, :mingw, :x64_mingw]
   gem "capybara"
   gem "factory_bot_rails", "6.2.0"
-  gem "faker", "2.17.0"
+  gem "faker", "3.2.2"
   gem "listen", "3.4.1"
   gem "pry", "0.14.0"
   gem "rspec-rails", "5.0.1"

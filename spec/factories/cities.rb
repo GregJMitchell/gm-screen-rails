@@ -24,10 +24,10 @@
 #
 FactoryBot.define do
   factory :city do
-    name { "MyString" }
+    name { Faker::Games::DnD.city }
     gov_type { "MyString" }
     population { 1 }
-    description { "MyText" }
+    description { Faker::Fantasy::Tolkien.poem }
     campaign
     leader { build(:non_player_character) }
   end
